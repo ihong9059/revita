@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/CMakeFiles/peripheral"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/CMakeFiles/peripheral.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/CMakeFiles/peripheral-complete.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-build.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-configure.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-download.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-install.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-mkdir.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-patch.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"peripheral"
+		],
+		"name" : "peripheral"
+	}
+}

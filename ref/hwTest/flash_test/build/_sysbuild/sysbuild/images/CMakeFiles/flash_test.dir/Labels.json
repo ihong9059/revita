@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/CMakeFiles/flash_test"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/CMakeFiles/flash_test.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/CMakeFiles/flash_test-complete.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-build.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-configure.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-download.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-install.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-mkdir.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-patch.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"flash_test"
+		],
+		"name" : "flash_test"
+	}
+}

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/CMakeFiles/central"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/CMakeFiles/central.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/CMakeFiles/central-complete.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-build.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-configure.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-download.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-install.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-mkdir.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-patch.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/loraTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"central"
+		],
+		"name" : "central"
+	}
+}

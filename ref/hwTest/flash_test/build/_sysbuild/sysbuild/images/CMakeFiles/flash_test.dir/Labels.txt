@@ -1,0 +1,13 @@
+# Target labels
+ flash_test
+# Source files and their labels
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/CMakeFiles/flash_test
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/CMakeFiles/flash_test.rule
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/CMakeFiles/flash_test-complete.rule
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-build.rule
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-configure.rule
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-download.rule
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-install.rule
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-mkdir.rule
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-patch.rule
+/home/uttec/revita/hwTest/flash_test/build/_sysbuild/sysbuild/images/flash_test-prefix/src/flash_test-stamp/flash_test-update.rule

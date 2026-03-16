@@ -1,0 +1,7 @@
+default: serial_counter
+build_dir: /home/uttec/revita/hwTest/serial_counter/build
+domains:
+  - name: serial_counter
+    build_dir: /home/uttec/revita/hwTest/serial_counter/build/serial_counter
+flash_order:
+  - serial_counter

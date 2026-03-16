@@ -1,0 +1,7 @@
+default: central
+build_dir: /home/uttec/revita/zephyr_workspace/loraTest/central/build
+domains:
+  - name: central
+    build_dir: /home/uttec/revita/zephyr_workspace/loraTest/central/build/central
+flash_order:
+  - central

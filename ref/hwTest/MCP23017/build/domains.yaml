@@ -1,0 +1,7 @@
+default: MCP23017
+build_dir: /home/uttec/revita/ref/hwTest/MCP23017/build
+domains:
+  - name: MCP23017
+    build_dir: /home/uttec/revita/ref/hwTest/MCP23017/build/MCP23017
+flash_order:
+  - MCP23017

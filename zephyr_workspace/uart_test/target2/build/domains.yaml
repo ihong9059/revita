@@ -1,0 +1,7 @@
+default: target2
+build_dir: /home/uttec/revita/zephyr_workspace/uart_test/target2/build
+domains:
+  - name: target2
+    build_dir: /home/uttec/revita/zephyr_workspace/uart_test/target2/build/target2
+flash_order:
+  - target2

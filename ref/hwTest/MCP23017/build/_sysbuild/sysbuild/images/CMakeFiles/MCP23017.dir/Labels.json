@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/CMakeFiles/MCP23017"
+		},
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/CMakeFiles/MCP23017.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/CMakeFiles/MCP23017-complete.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-build.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-configure.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-download.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-install.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-mkdir.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-patch.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"MCP23017"
+		],
+		"name" : "MCP23017"
+	}
+}

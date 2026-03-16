@@ -1,0 +1,4 @@
+/* REVITA_LINK overlay for RAK4631 - LoRa already configured in board DTS */
+/* UART1 (P0.16/P0.15) is already console, LoRa (SX1262) is already configured */
+
+/* No additional configuration needed - using board defaults */

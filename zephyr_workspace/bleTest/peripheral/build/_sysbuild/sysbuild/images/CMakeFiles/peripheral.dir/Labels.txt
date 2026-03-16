@@ -1,0 +1,13 @@
+# Target labels
+ peripheral
+# Source files and their labels
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/CMakeFiles/peripheral
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/CMakeFiles/peripheral.rule
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/CMakeFiles/peripheral-complete.rule
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-build.rule
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-configure.rule
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-download.rule
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-install.rule
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-mkdir.rule
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-patch.rule
+/home/uttec/revita/zephyr_workspace/bleTest/peripheral/build/_sysbuild/sysbuild/images/peripheral-prefix/src/peripheral-stamp/peripheral-update.rule

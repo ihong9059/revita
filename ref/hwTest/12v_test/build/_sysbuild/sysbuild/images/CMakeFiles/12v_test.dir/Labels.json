@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/CMakeFiles/12v_test"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/CMakeFiles/12v_test.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/CMakeFiles/12v_test-complete.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/12v_test-prefix/src/12v_test-stamp/12v_test-build.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/12v_test-prefix/src/12v_test-stamp/12v_test-configure.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/12v_test-prefix/src/12v_test-stamp/12v_test-download.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/12v_test-prefix/src/12v_test-stamp/12v_test-install.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/12v_test-prefix/src/12v_test-stamp/12v_test-mkdir.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/12v_test-prefix/src/12v_test-stamp/12v_test-patch.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/12v_test/build/_sysbuild/sysbuild/images/12v_test-prefix/src/12v_test-stamp/12v_test-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"12v_test"
+		],
+		"name" : "12v_test"
+	}
+}

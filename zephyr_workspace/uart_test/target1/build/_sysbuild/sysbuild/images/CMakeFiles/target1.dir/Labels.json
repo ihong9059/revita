@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/CMakeFiles/target1"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/CMakeFiles/target1.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/CMakeFiles/target1-complete.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-build.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-configure.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-download.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-install.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-mkdir.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-patch.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"target1"
+		],
+		"name" : "target1"
+	}
+}

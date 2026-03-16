@@ -1,0 +1,55 @@
+cmake:
+  application:
+    configuration-dir: /home/uttec/revita/hwTest/flash_test
+    source-dir: /home/uttec/revita/hwTest/flash_test
+  board:
+    name: nrf52840dk
+    path:
+     - /home/uttec/ncs/zephyr/boards/nordic/nrf52840dk
+    qualifiers: nrf52840
+    revision: 
+  devicetree:
+    bindings-dirs:
+     - /home/uttec/ncs/nrf/dts/bindings
+     - /home/uttec/ncs/zephyr/dts/bindings
+    files:
+     - /home/uttec/ncs/zephyr/boards/nordic/nrf52840dk/nrf52840dk_nrf52840.dts
+     - /home/uttec/revita/hwTest/flash_test/app.overlay
+    include-dirs:
+     - /home/uttec/ncs/nrf/include
+     - /home/uttec/ncs/nrf/dts/common
+     - /home/uttec/ncs/nrf/dts/riscv
+     - /home/uttec/ncs/nrf/dts/arm
+     - /home/uttec/ncs/nrf/dts
+     - /home/uttec/ncs/zephyr/include
+     - /home/uttec/ncs/zephyr/include/zephyr
+     - /home/uttec/ncs/zephyr/dts/common
+     - /home/uttec/ncs/zephyr/dts/x86
+     - /home/uttec/ncs/zephyr/dts/xtensa
+     - /home/uttec/ncs/zephyr/dts/sparc
+     - /home/uttec/ncs/zephyr/dts/riscv
+     - /home/uttec/ncs/zephyr/dts/posix
+     - /home/uttec/ncs/zephyr/dts/nios2
+     - /home/uttec/ncs/zephyr/dts/arm64
+     - /home/uttec/ncs/zephyr/dts/arm
+     - /home/uttec/ncs/zephyr/dts/arc
+     - /home/uttec/ncs/zephyr/dts
+    user-files:
+     - /home/uttec/revita/hwTest/flash_test/app.overlay
+  kconfig:
+    files:
+     - /home/uttec/ncs/zephyr/boards/nordic/nrf52840dk/nrf52840dk_nrf52840_defconfig
+     - /home/uttec/revita/hwTest/flash_test/prj.conf
+     - /home/uttec/revita/hwTest/flash_test/build/flash_test/zephyr/.config.sysbuild
+    user-files:
+     - /home/uttec/revita/hwTest/flash_test/prj.conf
+  toolchain:
+    name: gnuarmemb
+    path: /home/uttec/gnuarmemb
+  vendor-specific:
+    nordic:
+      svdfile: /home/uttec/ncs/modules/hal/nordic/nrfx/mdk/nrf52840.svd
+  zephyr:
+    version: 4.0.99
+    zephyr-base: /home/uttec/ncs/zephyr
+version: 0.1.0

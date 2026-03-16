@@ -1,0 +1,2 @@
+# Load board Kconfig descriptions.
+osource "/home/uttec/ncs/zephyr/boards/rakwireless/rak4631/Kconfig.rak4631"

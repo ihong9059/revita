@@ -1,0 +1,13 @@
+# Target labels
+ central
+# Source files and their labels
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/CMakeFiles/central
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/CMakeFiles/central.rule
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/CMakeFiles/central-complete.rule
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-build.rule
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-configure.rule
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-download.rule
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-install.rule
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-mkdir.rule
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-patch.rule
+/home/uttec/revita/zephyr_workspace/bleTest/central/build/_sysbuild/sysbuild/images/central-prefix/src/central-stamp/central-update.rule

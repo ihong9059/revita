@@ -1,0 +1,85 @@
+1. hardwar test
+
+
+Page	Block Name	주요 IC	기능
+1	3.3V_buck_boost	TPS63001DRCR	3.3V 전압 레귤레이터: 완료
+2	RS485 to UART (3.3V)	MAX3485ESA	RS485-UART 변환: 
+    - rs485동글 준비
+    - uart0(tx: p0.20, rx: p0.19)
+
+3	12v dio to 3.3v dio	PC817C	12V→3.3V 레벨 변환: 
+    - DIO_X(p0.10)
+4	12v dio to 3.3v dio_1	PC817C	12V→3.3V 레벨 변환 (2번째)
+    - DIO_Y(p0.09)
+
+5	SOLAR_CHARGER_1S	CN3158	태양광 배터리 충전기
+    - solar에 전압 인가후, VBAT 전압확인
+
+6	3.0V-watchdog	TPS3808G30DBVR	전압 감시/리셋
+    - VBAT조정시 RESET# 신호 확인(MCP, RAC RST#)확인
+
+7	12V-0.1A N-CHANNEL_1	Si2302CDS	N-Channel 스위치
+    - EN port재확인
+
+8	3-Line-motor-control	FDS9435A, MMBT3904	3선 모터 제어
+    Y: Y_EN_A(GPA6), Y_EN_B(GPA5), Y_EN_P2(GPA4)
+ 
+9	3-Line-motor-control_1	FDS9435A, MMBT3904	3선 모터 제어 (2번째)
+    X: X_EN_A(GPA3), X_EN_B(GPA2), X_EN_P2(GPA1)
+
+10	12V-0.1A N-CHANNEL	Si2302CDS	N-Channel 스위치
+    Motor control actuator로부터
+
+11	12V-step-up_1	TPS61178RNWR	12V 부스트 컨버터
+    12V_EN(GPA7)
+
+12	Schematic1 (main_board)	RAK4630, MCP23017	메인 보드 (전체 연결도)
+
+
+2. debug용 led 추가
+
+
+3. PORT정리
+* UART1: TX: P0.20, RX: P0.19
+* UART2: TX: P0.16, RX: P0.15
+* I2C: SDA: P0.13, SCL: P0.14
+VIB_SENSE: P0.21
+DIO_X: P0.10
+DIO_Y: P0.09
+
+RST#: PIN17(RRF_RESET)
+INTA: P1.01
+INTB: P1.02
+RE#: P1.03
+DE: P1.04
+
+QSPI_SCLK: P0.03
+QSPI_DIO3: P0.02
+QSPI_DIO2: P0.28
+QSPI_DIO1: P0.29
+QSPI_DIO0: P0.30
+QSPI_CS: P0.26
+
+BAT_AIN: P0.05
+
+BUZZER_EN: GPB0
+LED_IN: GPB7
+I2C_SCL: SCL
+I2C_SDA: SDA 
+
+12V_EN: GPA7
+Y_EN_A: GPA6 
+Y_EN_A: GPA6 
+Y_EN_A: GPA6 
+
+Y_EN_A: GPA6 
+Y_EN_A: GPA6 
+Y_EN_A: GPA6 
+
+
+BTN: GPA0
+
+INTA: P1.01
+INTB: P1.02
+
+

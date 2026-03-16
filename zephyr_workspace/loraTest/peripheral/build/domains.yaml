@@ -1,0 +1,7 @@
+default: peripheral
+build_dir: /home/uttec/revita/zephyr_workspace/loraTest/peripheral/build
+domains:
+  - name: peripheral
+    build_dir: /home/uttec/revita/zephyr_workspace/loraTest/peripheral/build/peripheral
+flash_order:
+  - peripheral

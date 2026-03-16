@@ -1,0 +1,13 @@
+# Target labels
+ MCP23017
+# Source files and their labels
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/CMakeFiles/MCP23017
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/CMakeFiles/MCP23017.rule
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/CMakeFiles/MCP23017-complete.rule
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-build.rule
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-configure.rule
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-download.rule
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-install.rule
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-mkdir.rule
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-patch.rule
+/home/uttec/revita/ref/hwTest/MCP23017/build/_sysbuild/sysbuild/images/MCP23017-prefix/src/MCP23017-stamp/MCP23017-update.rule

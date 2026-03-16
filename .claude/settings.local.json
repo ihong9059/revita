@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/home/uttec/revita/ref/hw_tests/.venv/bin/pio run:*)",
+      "Bash(~/.platformio/penv/bin/pio:*)",
+      "Bash(~/.local/bin/pio:*)",
+      "Bash(pip3 install:*)",
+      "Bash(python3:*)",
+      "Bash(.venv/bin/pip install:*)",
+      "Bash(.venv/bin/pio run:*)",
+      "Bash(JLinkExe:*)"
+    ]
+  }
+}

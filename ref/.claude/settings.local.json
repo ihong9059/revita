@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pio run:*)",
+      "Bash(pip3 install:*)",
+      "Bash(python3 -m venv:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(pio boards:*)",
+      "Bash(pio pkg install:*)",
+      "Bash(arm-none-eabi-gcc:*)",
+      "Bash(sudo apt-get update:*)",
+      "Bash(sudo apt-get install:*)",
+      "Bash(dpkg:*)",
+      "Bash(/usr/bin/arm-none-eabi-gcc:*)",
+      "Bash(pio pkg uninstall:*)",
+      "Bash(curl -I https://registry.platformio.org)",
+      "Bash(pio pkg search:*)",
+      "Bash(pio pkg update:*)",
+      "Bash(do echo \"========================================\" echo \"Building: $dir\" echo \"========================================\" cd \"$dir\" pio run)",
+      "Bash(fuser:*)",
+      "Bash(for port in /dev/ttyACM*)",
+      "Bash(do echo '=== $port ===' udevadm info -q property -n $port)",
+      "Bash(JLinkExe:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(python3 -m platformio:*)",
+      "Bash(/home/uttec/revita/.venv/bin/platformio run:*)",
+      "Bash(west build:*)",
+      "Bash(grep:*)",
+      "Bash(platformio run:*)",
+      "Bash(~/.platformio/penv/bin/platformio run:*)"
+    ]
+  }
+}

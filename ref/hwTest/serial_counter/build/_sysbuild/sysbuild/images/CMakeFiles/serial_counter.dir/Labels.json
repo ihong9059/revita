@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/CMakeFiles/serial_counter"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/CMakeFiles/serial_counter.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/CMakeFiles/serial_counter-complete.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-build.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-configure.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-download.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-install.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-mkdir.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-patch.rule"
+		},
+		{
+			"file" : "/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"serial_counter"
+		],
+		"name" : "serial_counter"
+	}
+}

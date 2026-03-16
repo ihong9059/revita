@@ -1,0 +1,2 @@
+# Load Zephyr board defconfig descriptions.
+osource "/home/uttec/ncs/zephyr/boards/rakwireless/rak4631/Kconfig.defconfig"

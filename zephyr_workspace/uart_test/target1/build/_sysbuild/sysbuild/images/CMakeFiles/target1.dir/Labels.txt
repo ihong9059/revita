@@ -1,0 +1,13 @@
+# Target labels
+ target1
+# Source files and their labels
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/CMakeFiles/target1
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/CMakeFiles/target1.rule
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/CMakeFiles/target1-complete.rule
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-build.rule
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-configure.rule
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-download.rule
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-install.rule
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-mkdir.rule
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-patch.rule
+/home/uttec/revita/zephyr_workspace/uart_test/target1/build/_sysbuild/sysbuild/images/target1-prefix/src/target1-stamp/target1-update.rule

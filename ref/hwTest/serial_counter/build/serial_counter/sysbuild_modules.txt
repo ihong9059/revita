@@ -1,0 +1,2 @@
+"nrf":"/home/uttec/ncs/nrf":"/home/uttec/ncs/nrf/sysbuild"
+"mcuboot":"/home/uttec/ncs/bootloader/mcuboot":"/home/uttec/ncs/bootloader/mcuboot/boot/zephyr/sysbuild"

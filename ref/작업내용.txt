@@ -1,0 +1,9 @@
+claude, REVITA_LINK_v1_회로도_블록목록.md와 향후 작업.txt에 
+정리된 port할당을 기준으로,
+각 hardware block을 확인할 program을 만들어서 단계별로 동작을 확인 할려고 합니다.
+
+우선 uart2에 debugging출력과 입력을 받도록 모든 block test program에 적용해 주시고,
+모즌 block은 개별 program으로 만들어 주세요.
+
+우선 계획서를 만들어 주시는데, 필요한 사항이 있으면 알려주세요.
+다시한번 강조하는데, 세세한 block으로 나누고block별로 만들어 주세요.

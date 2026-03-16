@@ -1,0 +1,1424 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/kernel.cmake:128 (project)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/zephyr_default.cmake:142 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:92 (include_boilerplate)"
+      - "CMakeLists.txt:2 (find_package)"
+    message: |
+      The target system is: Generic - 4.0.99 - arm
+      The host system is: Linux - 6.12.47+rpt-rpi-v8 - aarch64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/kernel.cmake:128 (project)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/zephyr_default.cmake:142 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:92 (include_boilerplate)"
+      - "CMakeLists.txt:2 (find_package)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-exit.o): in function `exit':
+      exit.c:(.text.exit+0x28): undefined reference to `_exit'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-closer.o): in function `_close_r':
+      closer.c:(.text._close_r+0x18): undefined reference to `_close'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-lseekr.o): in function `_lseek_r':
+      lseekr.c:(.text._lseek_r+0x24): undefined reference to `_lseek'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-readr.o): in function `_read_r':
+      readr.c:(.text._read_r+0x24): undefined reference to `_read'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-writer.o): in function `_write_r':
+      writer.c:(.text._write_r+0x24): undefined reference to `_write'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-sbrkr.o): in function `_sbrk_r':
+      sbrkr.c:(.text._sbrk_r+0x18): undefined reference to `_sbrk'
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/kernel.cmake:128 (project)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/zephyr_default.cmake:142 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:92 (include_boilerplate)"
+      - "CMakeLists.txt:2 (find_package)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        /home/uttec/revita/hwTest/serial_counter/build/serial_counter/CMakeFiles/3.31.6/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/kernel.cmake:128 (project)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/zephyr_default.cmake:142 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:92 (include_boilerplate)"
+      - "CMakeLists.txt:2 (find_package)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /home/uttec/gnuarmemb/bin/arm-none-eabi-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-exit.o): in function `exit':
+      exit.c:(.text.exit+0x28): undefined reference to `_exit'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-closer.o): in function `_close_r':
+      closer.c:(.text._close_r+0x18): undefined reference to `_close'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-lseekr.o): in function `_lseek_r':
+      lseekr.c:(.text._lseek_r+0x24): undefined reference to `_lseek'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-readr.o): in function `_read_r':
+      readr.c:(.text._read_r+0x24): undefined reference to `_read'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-writer.o): in function `_write_r':
+      writer.c:(.text._write_r+0x24): undefined reference to `_write'
+      /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/bin/ld: /home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/../../../../arm-none-eabi/lib/libc.a(libc_a-sbrkr.o): in function `_sbrk_r':
+      sbrkr.c:(.text._sbrk_r+0x18): undefined reference to `_sbrk'
+      collect2: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/kernel.cmake:128 (project)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/zephyr_default.cmake:142 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:92 (include_boilerplate)"
+      - "CMakeLists.txt:2 (find_package)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /home/uttec/gnuarmemb/bin/arm-none-eabi-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/uttec/revita/hwTest/serial_counter/build/serial_counter/CMakeFiles/3.31.6/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1237 (message)"
+      - "/usr/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/kernel.cmake:134 (enable_language)"
+      - "/home/uttec/ncs/zephyr/cmake/modules/zephyr_default.cmake:142 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/uttec/ncs/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:92 (include_boilerplate)"
+      - "CMakeLists.txt:2 (find_package)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      arm-none-eabi-gcc (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119
+      Copyright (C) 2024 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:123 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:73 (include)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Werror_missing_declarations"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_57785
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -o CMakeFiles/cmTC_57785.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_57785.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_57785.a  CMakeFiles/cmTC_57785.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_57785.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:123 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:73 (include)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Werror_unknown_attributes"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_c25ff
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=unknown-attributes -o CMakeFiles/cmTC_c25ff.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        FAILED: CMakeFiles/cmTC_c25ff.dir/simple-main.c.obj 
+        /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=unknown-attributes -o CMakeFiles/cmTC_c25ff.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        cc1: error: '-Werror=unknown-attributes': no option '-Wunknown-attributes'; did you mean '-Wno-attributes'?
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:123 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:73 (include)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Werror_attributes"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_c236b
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=attributes -o CMakeFiles/cmTC_c236b.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_c236b.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_c236b.a  CMakeFiles/cmTC_c236b.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_c236b.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:123 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:73 (include)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Werror_unsupported_floating_point_opt"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_09f34
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=unsupported-floating-point-opt -o CMakeFiles/cmTC_09f34.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        FAILED: CMakeFiles/cmTC_09f34.dir/simple-main.c.obj 
+        /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=unsupported-floating-point-opt -o CMakeFiles/cmTC_09f34.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        cc1: error: '-Werror=unsupported-floating-point-opt': no option '-Wunsupported-floating-point-opt'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:123 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:73 (include)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Werror_ignored_optimization_argument"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_0dcd7
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=ignored-optimization-argument -o CMakeFiles/cmTC_0dcd7.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        FAILED: CMakeFiles/cmTC_0dcd7.dir/simple-main.c.obj 
+        /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=ignored-optimization-argument -o CMakeFiles/cmTC_0dcd7.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        cc1: error: '-Werror=ignored-optimization-argument': no option '-Wignored-optimization-argument'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:123 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:73 (include)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Werror_attribute_optimize"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_298f4
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=attribute-optimize -o CMakeFiles/cmTC_298f4.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        FAILED: CMakeFiles/cmTC_298f4.dir/simple-main.c.obj 
+        /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=attribute-optimize -o CMakeFiles/cmTC_298f4.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        cc1: error: '-Werror=attribute-optimize': no option '-Wattribute-optimize'; did you mean '-Wattribute-alias='?
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:123 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:73 (include)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Werror_implicit_function_declaration"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_55c62
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=implicit-function-declaration -o CMakeFiles/cmTC_55c62.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_55c62.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_55c62.a  CMakeFiles/cmTC_55c62.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_55c62.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:123 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:73 (include)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Wno_unused_command_line_argument"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_02d21
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Wno-unused-command-line-argument -o CMakeFiles/cmTC_02d21.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_02d21.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_02d21.a  CMakeFiles/cmTC_02d21.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_02d21.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:138 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_ALIAS_ATTRIBUTE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_4a09b
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_4a09b.dir/have-alias-attribute.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-alias-attribute.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_4a09b.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_4a09b.a  CMakeFiles/cmTC_4a09b.dir/have-alias-attribute.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_4a09b.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:141 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_ALLOC_SIZE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_e7338
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_e7338.dir/have-alloc-size.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-alloc-size.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_e7338.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_e7338.a  CMakeFiles/cmTC_e7338.dir/have-alloc-size.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_e7338.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:144 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_ATTRIBUTE_ALWAYS_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_5fa0e
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_5fa0e.dir/have-attribute-always-inline.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-attribute-always-inline.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_5fa0e.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_5fa0e.a  CMakeFiles/cmTC_5fa0e.dir/have-attribute-always-inline.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_5fa0e.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:147 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_ATTRIBUTE_GNU_INLINE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_9e7ce
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_9e7ce.dir/have-attribute-gnu-inline.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-attribute-gnu-inline.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_9e7ce.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_9e7ce.a  CMakeFiles/cmTC_9e7ce.dir/have-attribute-gnu-inline.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_9e7ce.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:150 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BITFIELDS_IN_PACKED_STRUCTS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_551ff
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_551ff.dir/have-bitfields-in-packed-structs.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-bitfields-in-packed-structs.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_551ff.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_551ff.a  CMakeFiles/cmTC_551ff.dir/have-bitfields-in-packed-structs.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_551ff.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:153 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_ALLOCA"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_10b76
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_10b76.dir/have-builtin-alloca.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-alloca.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_10b76.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_10b76.a  CMakeFiles/cmTC_10b76.dir/have-builtin-alloca.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_10b76.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:156 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_COPYSIGN"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_07375
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_07375.dir/have-builtin-copysign.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-copysign.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_07375.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_07375.a  CMakeFiles/cmTC_07375.dir/have-builtin-copysign.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_07375.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:159 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_COPYSIGNL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_f3fcc
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_f3fcc.dir/have-builtin-copysignl.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-copysignl.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_f3fcc.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_f3fcc.a  CMakeFiles/cmTC_f3fcc.dir/have-builtin-copysignl.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_f3fcc.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:162 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_CTZ"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_d9e23
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_d9e23.dir/have-builtin-ctz.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-ctz.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_d9e23.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_d9e23.a  CMakeFiles/cmTC_d9e23.dir/have-builtin-ctz.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_d9e23.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:165 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_CTZL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_c0de7
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_c0de7.dir/have-builtin-ctzl.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-ctzl.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_c0de7.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_c0de7.a  CMakeFiles/cmTC_c0de7.dir/have-builtin-ctzl.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_c0de7.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:168 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_CTZLL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_cb86b
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_cb86b.dir/have-builtin-ctzll.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-ctzll.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_cb86b.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_cb86b.a  CMakeFiles/cmTC_cb86b.dir/have-builtin-ctzll.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_cb86b.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:171 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_EXPECT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_f5785
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_f5785.dir/have-builtin-expect.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-expect.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_f5785.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_f5785.a  CMakeFiles/cmTC_f5785.dir/have-builtin-expect.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_f5785.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:174 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_FFS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_aba3e
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_aba3e.dir/have-builtin-ffs.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-ffs.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_aba3e.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_aba3e.a  CMakeFiles/cmTC_aba3e.dir/have-builtin-ffs.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_aba3e.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:177 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_FFSL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_017ef
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_017ef.dir/have-builtin-ffsl.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-ffsl.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_017ef.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_017ef.a  CMakeFiles/cmTC_017ef.dir/have-builtin-ffsl.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_017ef.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:180 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_FFSLL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_c679a
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_c679a.dir/have-builtin-ffsll.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-ffsll.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_c679a.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_c679a.a  CMakeFiles/cmTC_c679a.dir/have-builtin-ffsll.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_c679a.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:183 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_FINITEL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_f87da
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_f87da.dir/have-builtin-finitel.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-finitel.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_f87da.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_f87da.a  CMakeFiles/cmTC_f87da.dir/have-builtin-finitel.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_f87da.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:186 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_ISFINITE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_862d7
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_862d7.dir/have-builtin-isfinite.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-isfinite.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_862d7.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_862d7.a  CMakeFiles/cmTC_862d7.dir/have-builtin-isfinite.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_862d7.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:189 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_ISINF"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_e9eda
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_e9eda.dir/have-builtin-isinf.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-isinf.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_e9eda.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_e9eda.a  CMakeFiles/cmTC_e9eda.dir/have-builtin-isinf.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_e9eda.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:192 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_ISINFL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_ec19d
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_ec19d.dir/have-builtin-isinfl.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-isinfl.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_ec19d.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_ec19d.a  CMakeFiles/cmTC_ec19d.dir/have-builtin-isinfl.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_ec19d.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:195 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_ISNAN"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_37701
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_37701.dir/have-builtin-isnan.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-isnan.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_37701.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_37701.a  CMakeFiles/cmTC_37701.dir/have-builtin-isnan.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_37701.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:198 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_ISNANL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_dda37
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_dda37.dir/have-builtin-isnanl.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-isnanl.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_dda37.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_dda37.a  CMakeFiles/cmTC_dda37.dir/have-builtin-isnanl.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_dda37.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:201 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_MUL_OVERFLOW"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_5107d
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_5107d.dir/have-builtin-mul-overflow.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-mul-overflow.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_5107d.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_5107d.a  CMakeFiles/cmTC_5107d.dir/have-builtin-mul-overflow.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_5107d.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:204 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_ADD_OVERFLOW"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_5f4f7
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_5f4f7.dir/have-builtin-add-overflow.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-add-overflow.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_5f4f7.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_5f4f7.a  CMakeFiles/cmTC_5f4f7.dir/have-builtin-add-overflow.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_5f4f7.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:207 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_CC_INHIBIT_LOOP_TO_LIBCALL"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_4d6c7
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_4d6c7.dir/have-cc-inhibit-loop-to-libcall.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-cc-inhibit-loop-to-libcall.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_4d6c7.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_4d6c7.a  CMakeFiles/cmTC_4d6c7.dir/have-cc-inhibit-loop-to-libcall.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_4d6c7.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:210 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_COMPLEX"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_338fa
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_338fa.dir/have-complex.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-complex.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_338fa.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_338fa.a  CMakeFiles/cmTC_338fa.dir/have-complex.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_338fa.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:213 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_BUILTIN_COMPLEX"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_e6321
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_e6321.dir/have-builtin-complex.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-builtin-complex.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_e6321.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_e6321.a  CMakeFiles/cmTC_e6321.dir/have-builtin-complex.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_e6321.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:216 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_FORMAT_ATTRIBUTE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_20f9f
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_20f9f.dir/have-format-attribute.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-format-attribute.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_20f9f.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_20f9f.a  CMakeFiles/cmTC_20f9f.dir/have-format-attribute.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_20f9f.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:219 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_WEAK_ATTRIBUTE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_149ee
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_149ee.dir/have-weak-attribute.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-weak-attribute.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_149ee.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_149ee.a  CMakeFiles/cmTC_149ee.dir/have-weak-attribute.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_149ee.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:236 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_LONG_DOUBLE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_62ddf
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_62ddf.dir/have-long-double.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-long-double.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_62ddf.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_62ddf.a  CMakeFiles/cmTC_62ddf.dir/have-long-double.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_62ddf.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:152 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:239 (picolibc_flag)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_HAVE_NO_BUILTIN_ATTRIBUTE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_77d48
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_77d48.dir/have-no-builtin-attribute.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-no-builtin-attribute.c
+        FAILED: CMakeFiles/cmTC_77d48.dir/have-no-builtin-attribute.c.obj 
+        /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -o CMakeFiles/cmTC_77d48.dir/have-no-builtin-attribute.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/have-no-builtin-attribute.c
+        /home/uttec/ncs/modules/lib/picolibc/cmake/have-no-builtin-attribute.c:1:1: error: 'no_builtin' attribute directive ignored [-Werror=attributes]
+            1 | static int __attribute__((no_builtin)) foo(int x) { return x + 1; }
+              | ^~~~~~
+        cc1: note: unrecognized command-line option '-Wno-unused-command-line-argument' may have been intended to silence earlier diagnostics
+        cc1: some warnings being treated as errors
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/CheckIncludeFile.cmake:99 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:511 (CHECK_INCLUDE_FILE)"
+    checks:
+      - "Looking for xtensa/config/core-isa.h"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/CMakeFiles/CMakeScratch/TryCompile-fBifLT"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/CMakeFiles/CMakeScratch/TryCompile-fBifLT"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_XTENSA_HAVE_CONFIG_CORE_ISA_H"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/CMakeFiles/CMakeScratch/TryCompile-fBifLT'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_cec62
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -nostartfiles -nostdlib -isystem "/home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/include" -isystem "/home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/include" -Wl,--unresolved-symbols=ignore-in-object-files -Wl,--entry=0 -fuse-ld=bfd -o CMakeFiles/cmTC_cec62.dir/CheckIncludeFile.c.obj -c /home/uttec/revita/hwTest/serial_counter/build/serial_counter/CMakeFiles/CMakeScratch/TryCompile-fBifLT/CheckIncludeFile.c
+        FAILED: CMakeFiles/cmTC_cec62.dir/CheckIncludeFile.c.obj 
+        /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -nostartfiles -nostdlib -isystem "/home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/include" -isystem "/home/uttec/gnuarmemb/bin/../lib/gcc/arm-none-eabi/14.2.1/include" -Wl,--unresolved-symbols=ignore-in-object-files -Wl,--entry=0 -fuse-ld=bfd -o CMakeFiles/cmTC_cec62.dir/CheckIncludeFile.c.obj -c /home/uttec/revita/hwTest/serial_counter/build/serial_counter/CMakeFiles/CMakeScratch/TryCompile-fBifLT/CheckIncludeFile.c
+        /home/uttec/revita/hwTest/serial_counter/build/serial_counter/CMakeFiles/CMakeScratch/TryCompile-fBifLT/CheckIncludeFile.c:1:10: fatal error: xtensa/config/core-isa.h: No such file or directory
+            1 | #include <xtensa/config/core-isa.h>
+              |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+        compilation terminated.
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_fno_common"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_f339a
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -fno-common -o CMakeFiles/cmTC_f339a.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_f339a.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_f339a.a  CMakeFiles/cmTC_f339a.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_f339a.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_fno_stack_protector"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_9b6d7
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -fno-stack-protector -o CMakeFiles/cmTC_9b6d7.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_9b6d7.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_9b6d7.a  CMakeFiles/cmTC_9b6d7.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_9b6d7.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_ffunction_sections"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_07620
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -ffunction-sections -o CMakeFiles/cmTC_07620.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_07620.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_07620.a  CMakeFiles/cmTC_07620.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_07620.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_fdata_sections"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_8a989
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -fdata-sections -o CMakeFiles/cmTC_8a989.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_8a989.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_8a989.a  CMakeFiles/cmTC_8a989.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_8a989.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Wall"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_4694a
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -Wall -o CMakeFiles/cmTC_4694a.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_4694a.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_4694a.a  CMakeFiles/cmTC_4694a.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_4694a.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Wextra"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_49a12
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -Wextra -o CMakeFiles/cmTC_49a12.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_49a12.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_49a12.a  CMakeFiles/cmTC_49a12.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_49a12.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Werror_implicit_function_declaration"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_a9ab2
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -Werror=implicit-function-declaration -o CMakeFiles/cmTC_a9ab2.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_a9ab2.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_a9ab2.a  CMakeFiles/cmTC_a9ab2.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_a9ab2.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Werror_vla"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_c693f
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -Werror=vla -o CMakeFiles/cmTC_c693f.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_c693f.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_c693f.a  CMakeFiles/cmTC_c693f.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_c693f.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Warray_bounds"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_c3476
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -Warray-bounds -o CMakeFiles/cmTC_c3476.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_c3476.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_c3476.a  CMakeFiles/cmTC_c3476.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_c3476.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_Wold_style_definition"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_0f5f2
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -Wold-style-definition -o CMakeFiles/cmTC_0f5f2.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_0f5f2.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_0f5f2.a  CMakeFiles/cmTC_0f5f2.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_0f5f2.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_frounding_math"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_db49c
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -frounding-math -o CMakeFiles/cmTC_db49c.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_db49c.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_db49c.a  CMakeFiles/cmTC_db49c.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_db49c.a && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:110 (try_compile)"
+      - "/home/uttec/ncs/modules/lib/picolibc/cmake/picolibc.cmake:135 (_picolibc_supported_compile_options)"
+      - "/home/uttec/ncs/modules/lib/picolibc/CMakeLists.txt:559 (picolibc_supported_compile_options)"
+    directories:
+      source: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+      binary: "/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/uttec/ncs/nrf/cmake/modules;/home/uttec/ncs/zephyr/cmake/modules"
+    buildResult:
+      variable: "_fsignaling_nans"
+      cached: true
+      stdout: |
+        Change Dir: '/home/uttec/revita/hwTest/serial_counter/build/serial_counter/modules/picolibc/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_786a6
+        [1/2] /home/uttec/gnuarmemb/bin/arm-none-eabi-gcc   -Werror=missing-declarations -Werror=attributes -Werror=implicit-function-declaration -Wno-unused-command-line-argument -fsignaling-nans -o CMakeFiles/cmTC_786a6.dir/simple-main.c.obj -c /home/uttec/ncs/modules/lib/picolibc/cmake/simple-main.c
+        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_786a6.a && /home/uttec/gnuarmemb/bin/arm-none-eabi-ar qc libcmTC_786a6.a  CMakeFiles/cmTC_786a6.dir/simple-main.c.obj && /home/uttec/gnuarmemb/bin/arm-none-eabi-ranlib libcmTC_786a6.a && :
+        
+      exitCode: 0
+...

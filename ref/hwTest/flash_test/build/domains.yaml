@@ -1,0 +1,7 @@
+default: flash_test
+build_dir: /home/uttec/revita/hwTest/flash_test/build
+domains:
+  - name: flash_test
+    build_dir: /home/uttec/revita/hwTest/flash_test/build/flash_test
+flash_order:
+  - flash_test

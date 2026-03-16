@@ -1,0 +1,4 @@
+/* REVITA_LINK overlay for RAK4631 - Central (TX) */
+/* UART1 (P0.16/P0.15) is already console */
+
+/* No additional configuration needed - using board defaults */

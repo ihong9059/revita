@@ -1,0 +1,13 @@
+# Target labels
+ serial_counter
+# Source files and their labels
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/CMakeFiles/serial_counter
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/CMakeFiles/serial_counter.rule
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/CMakeFiles/serial_counter-complete.rule
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-build.rule
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-configure.rule
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-download.rule
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-install.rule
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-mkdir.rule
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-patch.rule
+/home/uttec/revita/hwTest/serial_counter/build/_sysbuild/sysbuild/images/serial_counter-prefix/src/serial_counter-stamp/serial_counter-update.rule
