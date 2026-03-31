@@ -19,11 +19,12 @@ int main(void)
     k_sleep(K_MSEC(2000));
 
     printk("\n========================================\n");
-    printk("UART Test - Target1 Started\n");
+    printk("UART Test - REVITA Started\n");
+    printk("RAK4631 via PCA10056 S/N: 1050295470\n");
     printk("========================================\n\n");
 
     while (1) {
-        printk("target1: %u\n", count);
+        printk("revita: %u\n", count);
         count++;
         k_sleep(K_MSEC(1000));
     }
