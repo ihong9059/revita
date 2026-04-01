@@ -1,5 +1,8 @@
 #include "registers.h"
 #include "drivers.h"
+#include "lora.h"
+#include "sensor.h"
+#include "sensor2.h"
 #include <zephyr/kernel.h>
 
 /* Device state */
@@ -37,6 +40,36 @@ static struct {
 	/* 0x0070~0x0071: Flash */
 	uint16_t flash_state;
 	uint16_t flash_test;
+
+	/* 0x0080~0x0085: Soil Sensor (moisture/temp/EC) */
+	uint16_t sensor_mois;
+	int16_t  sensor_temp;
+	uint16_t sensor_ec;
+	uint16_t sensor_status;
+	uint16_t sensor_read_cnt;
+	uint16_t sensor_err_cnt;
+
+	/* 0x0090~0x0094: Sensor2 (온습도) */
+	uint16_t sensor2_humi;
+	int16_t  sensor2_temp;
+	uint16_t sensor2_status;
+	uint16_t sensor2_read_cnt;
+	uint16_t sensor2_err_cnt;
+
+	/* 0x0050~0x005C: LoRa (cached from lora module) */
+	uint16_t lora_state;
+	uint16_t lora_freq;
+	int16_t  lora_power;
+	int16_t  lora_rssi;
+	int16_t  lora_snr;
+	uint16_t lora_tx_cnt;
+	uint16_t lora_rx_cnt;
+	uint16_t lora_rx_err;
+	uint16_t lora_count_hi;
+	uint16_t lora_count_lo;
+	uint16_t lora_last_seq;
+	uint16_t lora_uptime_hi;
+	uint16_t lora_uptime_lo;
 
 	/* Timers */
 	int64_t buzzer_off_time;
@@ -93,6 +126,36 @@ int32_t reg_read(uint16_t addr)
 	/* Flash */
 	case 0x0070: return state.flash_state;
 	case 0x0071: return state.flash_test;
+
+	/* Soil Sensor */
+	case 0x0080: return state.sensor_mois;
+	case 0x0081: return (uint16_t)state.sensor_temp;
+	case 0x0082: return state.sensor_ec;
+	case 0x0083: return state.sensor_status;
+	case 0x0084: return state.sensor_read_cnt;
+	case 0x0085: return state.sensor_err_cnt;
+
+	/* Sensor2 (온습도) */
+	case 0x0090: return state.sensor2_humi;
+	case 0x0091: return (uint16_t)state.sensor2_temp;
+	case 0x0092: return state.sensor2_status;
+	case 0x0093: return state.sensor2_read_cnt;
+	case 0x0094: return state.sensor2_err_cnt;
+
+	/* LoRa status */
+	case 0x0050: return state.lora_state;
+	case 0x0051: return state.lora_freq;
+	case 0x0052: return (uint16_t)state.lora_power;
+	case 0x0053: return (uint16_t)state.lora_rssi;
+	case 0x0054: return (uint16_t)state.lora_snr;
+	case 0x0055: return state.lora_tx_cnt;
+	case 0x0056: return state.lora_rx_cnt;
+	case 0x0057: return state.lora_rx_err;
+	case 0x0058: return state.lora_count_lo;
+	case 0x0059: return state.lora_count_hi;
+	case 0x005A: return state.lora_last_seq;
+	case 0x005B: return state.lora_uptime_lo;
+	case 0x005C: return state.lora_uptime_hi;
 
 	default:
 		return -1;  /* Illegal address */
@@ -223,6 +286,17 @@ int reg_write(uint16_t addr, uint16_t value)
 		}
 		return 0;
 
+	/* LoRa control */
+	case 0x0130:
+		if (value == 0) {
+			lora_rx_stop();
+			printk("  LoRa: STOP\n");
+		} else if (value == 4) {
+			lora_rx_start();
+			printk("  LoRa: RX START\n");
+		}
+		return 0;
+
 	/* ALL STOP */
 	case 0x01F0:
 		if (value == 1) {
@@ -311,4 +385,43 @@ void reg_update_sensors(void)
 		state.valve_y_off_time = 0;
 		printk("  Valve Y auto-stop\n");
 	}
+}
+
+void reg_update_sensor(void)
+{
+	const struct sensor_data *sd = sensor_get_data();
+	state.sensor_mois = sd->mois_raw;
+	state.sensor_temp = sd->temp_raw;
+	state.sensor_ec = sd->ec_raw;
+	state.sensor_status = sd->status;
+	state.sensor_read_cnt = sd->read_count;
+	state.sensor_err_cnt = sd->err_count;
+}
+
+void reg_update_sensor2(void)
+{
+	const struct sensor2_data *sd = sensor2_get_data();
+	state.sensor2_humi = sd->humi_raw;
+	state.sensor2_temp = sd->temp_raw;
+	state.sensor2_status = sd->status;
+	state.sensor2_read_cnt = sd->read_count;
+	state.sensor2_err_cnt = sd->err_count;
+}
+
+void reg_update_lora(void)
+{
+	const struct lora_status *ls = lora_get_status();
+	state.lora_state = ls->state;
+	state.lora_freq = ls->freq;
+	state.lora_power = ls->power;
+	state.lora_rssi = ls->rssi;
+	state.lora_snr = ls->snr;
+	state.lora_tx_cnt = ls->tx_cnt;
+	state.lora_rx_cnt = ls->rx_cnt;
+	state.lora_rx_err = ls->rx_err_cnt;
+	state.lora_count_hi = (uint16_t)(ls->last_count >> 16);
+	state.lora_count_lo = (uint16_t)(ls->last_count & 0xFFFF);
+	state.lora_last_seq = ls->last_seq;
+	state.lora_uptime_hi = (uint16_t)(ls->last_uptime >> 16);
+	state.lora_uptime_lo = (uint16_t)(ls->last_uptime & 0xFFFF);
 }

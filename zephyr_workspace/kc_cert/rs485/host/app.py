@@ -18,6 +18,9 @@ from modbus_crc import append_crc, check_crc
 
 app = Flask(__name__)
 
+# kc_firmware slave address (센서=0x01이므로 0x10 사용)
+SLAVE_ADDR = 0x10
+
 # Serial connection
 ser = None
 ser_lock = threading.Lock()
@@ -64,20 +67,20 @@ def send_modbus(frame_no_crc: bytes, desc="") -> bytes | None:
 
 def read_registers(start, count, desc=""):
     """Modbus 0x03: Read Holding Registers."""
-    frame = struct.pack(">BBHH", 0x01, 0x03, start, count)
+    frame = struct.pack(">BBHH", SLAVE_ADDR, 0x03, start, count)
     return send_modbus(frame, desc)
 
 
 def write_register(addr, value, desc=""):
     """Modbus 0x06: Write Single Register."""
-    frame = struct.pack(">BBHH", 0x01, 0x06, addr, value & 0xFFFF)
+    frame = struct.pack(">BBHH", SLAVE_ADDR, 0x06, addr, value & 0xFFFF)
     return send_modbus(frame, desc)
 
 
 def write_multiple(start, values, desc=""):
     """Modbus 0x10: Write Multiple Registers."""
     count = len(values)
-    frame = struct.pack(">BBHHB", 0x01, 0x10, start, count, count * 2)
+    frame = struct.pack(">BBHHB", SLAVE_ADDR, 0x10, start, count, count * 2)
     for v in values:
         frame += struct.pack(">H", v & 0xFFFF)
     return send_modbus(frame, desc)
@@ -210,20 +213,53 @@ def api_read_all():
     if r:
         result["output"] = {"buzzer": r[0], "led": r[1]}
 
-    # LoRa
-    r = parse_read_response(read_registers(0x0050, 7, "LoRa"), 7)
+    # LoRa (0x0050~0x005C, 13 registers)
+    r = parse_read_response(read_registers(0x0050, 13, "LoRa"), 13)
     if r:
         result["lora"] = {
             "state": r[0], "freq": r[1],
             "power": signed16(r[2]),
-            "rssi": signed16(r[3]), "snr": r[4] / 10,
+            "rssi": signed16(r[3]), "snr": signed16(r[4]) / 10,
             "tx_cnt": r[5], "rx_cnt": r[6],
+            "rx_err": r[7],
+            "last_count": (r[9] << 16) | r[8],  # hi=0x59, lo=0x58
+            "last_seq": r[10],
+            "last_uptime": (r[12] << 16) | r[11],  # hi=0x5C, lo=0x5B
         }
 
     # BLE
     r = parse_read_response(read_registers(0x0060, 2, "BLE"), 2)
     if r:
         result["ble"] = {"state": r[0], "power": signed16(r[1])}
+
+    # Soil Sensor (0x0080~0x0085, 6 registers)
+    r = parse_read_response(read_registers(0x0080, 6, "Sensor"), 6)
+    if r:
+        temp_raw = signed16(r[1])
+        result["sensor"] = {
+            "mois_raw": r[0],
+            "mois": r[0] / 10,
+            "temp_raw": temp_raw,
+            "temp": temp_raw / 10,
+            "ec": r[2],
+            "status": r[3],
+            "read_cnt": r[4],
+            "err_cnt": r[5],
+        }
+
+    # Sensor2 온습도 (0x0090~0x0094, 5 registers)
+    r = parse_read_response(read_registers(0x0090, 5, "Sensor2"), 5)
+    if r:
+        temp_raw = signed16(r[1])
+        result["sensor2"] = {
+            "humi_raw": r[0],
+            "humi": r[0] / 10,
+            "temp_raw": temp_raw,
+            "temp": temp_raw / 10,
+            "status": r[2],
+            "read_cnt": r[3],
+            "err_cnt": r[4],
+        }
 
     # Flash
     r = parse_read_response(read_registers(0x0070, 2, "Flash"), 2)

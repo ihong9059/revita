@@ -64,7 +64,7 @@ padding:6px 10px;border-radius:4px;font-family:monospace;font-size:13px}
   <h1>KC 기능시험 - 리비타 링크 RS485</h1>
   <div class="conn">
     <span class="dot" id="connDot"></span>
-    <input id="portInput" value="COM15" placeholder="COM port">
+    <input id="portInput" value="/dev/ttyUSB1" placeholder="Serial port">
     <select id="baudSelect">
       <option value="9600" selected>9600</option>
       <option value="115200">115200</option>
@@ -93,6 +93,8 @@ padding:6px 10px;border-radius:4px;font-family:monospace;font-size:13px}
     <div class="row" style="margin-top:8px">
       <button class="danger" onclick="allStop()">ALL STOP (비상정지)</button>
       <button onclick="manualRefresh()">전체 상태 읽기</button>
+      <button class="sm" id="autoRefreshBtn" onclick="toggleAutoRefresh()">Auto (5s)</button>
+      <span id="autoRefreshStatus" style="font-size:11px;color:var(--dim)"></span>
     </div>
   </div>
 </div>
@@ -230,49 +232,94 @@ padding:6px 10px;border-radius:4px;font-family:monospace;font-size:13px}
   </div>
 </div>
 
+<!-- Soil Sensor -->
+<div class="card">
+  <h2>Soil Sensor <span class="tag">토양 수분/온도/EC (RS485)</span></h2>
+  <div class="card-body">
+    <div class="status-grid">
+      <div class="row"><label>Status</label><span id="senStatus" class="badge off">-</span></div>
+      <div class="row"><label>Read #</label><span id="senCnt" class="val">0</span></div>
+    </div>
+    <div style="display:flex;gap:20px;margin:12px 0;align-items:center">
+      <div style="text-align:center">
+        <div style="font-size:11px;color:var(--dim)">Moisture</div>
+        <div id="senMois" class="val" style="font-size:26px;color:#55efc4">-</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:11px;color:var(--dim)">Temperature</div>
+        <div id="senTemp" class="val" style="font-size:26px;color:#74b9ff">-</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:11px;color:var(--dim)">EC</div>
+        <div id="senEC" class="val" style="font-size:26px;color:#fdcb6e">-</div>
+      </div>
+    </div>
+    <div class="row">
+      <span style="font-size:11px;color:var(--dim)">Errors: <span id="senErr">0</span> | ZTS-3000 Addr:0x01 9600bps | 5초 간격</span>
+    </div>
+  </div>
+</div>
+
+<!-- Sensor2: 온습도 -->
+<div class="card">
+  <h2>Sensor2 <span class="tag">온습도 (RS485 Addr:0x02)</span></h2>
+  <div class="card-body">
+    <div class="status-grid">
+      <div class="row"><label>Status</label><span id="sen2Status" class="badge off">-</span></div>
+      <div class="row"><label>Read #</label><span id="sen2Cnt" class="val">0</span></div>
+    </div>
+    <div style="display:flex;gap:24px;margin:12px 0;align-items:center">
+      <div style="text-align:center">
+        <div style="font-size:11px;color:var(--dim)">Humidity</div>
+        <div id="sen2Humi" class="val" style="font-size:28px;color:#55efc4">-</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:11px;color:var(--dim)">Temperature</div>
+        <div id="sen2Temp" class="val" style="font-size:28px;color:#74b9ff">-</div>
+      </div>
+    </div>
+    <div class="row">
+      <span style="font-size:11px;color:var(--dim)">Errors: <span id="sen2Err">0</span> | 9600bps | 5초 간격</span>
+    </div>
+  </div>
+</div>
+
 <!-- LoRa RF -->
 <div class="card">
-  <h2>LoRa RF <span class="tag">920~925 MHz</span></h2>
+  <h2>LoRa RF <span class="tag">922.1 MHz / Star Topology</span></h2>
   <div class="card-body">
     <div class="status-grid">
       <div class="row"><label>State</label><span id="loraState" class="badge off">IDLE</span></div>
       <div class="row"><label>Freq</label><span id="loraFreq" class="val">-</span></div>
       <div class="row"><label>Power</label><span id="loraPwr" class="val">-</span></div>
       <div class="row"><label>RSSI</label><span id="loraRssi" class="val">-</span></div>
-      <div class="row"><label>TX Count</label><span id="loraTx" class="val">0</span></div>
+    </div>
+    <hr style="border-color:var(--border);margin:8px 0">
+    <div style="font-size:12px;color:var(--dim);margin-bottom:8px">Gateway RX (AES-128 encrypted, 16B payload)</div>
+    <div class="status-grid">
       <div class="row"><label>RX Count</label><span id="loraRx" class="val">0</span></div>
+      <div class="row"><label>RX Errors</label><span id="loraErr" class="val err">0</span></div>
+      <div class="row"><label>Last Count</label><span id="loraLastCnt" class="val" style="font-size:18px">-</span></div>
+      <div class="row"><label>Last Seq</label><span id="loraLastSeq" class="val">-</span></div>
+      <div class="row"><label>GW Uptime</label><span id="loraGwUp" class="val">-</span></div>
+      <div class="row"><label>TX Count</label><span id="loraTx" class="val">0</span></div>
     </div>
     <hr style="border-color:var(--border);margin:8px 0">
     <div class="row">
-      <button class="ok sm" onclick="loraReset()">Reset Default</button>
-      <button class="sm" onclick="loraCmd(6)">Default TX</button>
-      <button class="warn sm" onclick="loraCmd(0)">STOP</button>
+      <button class="ok sm" onclick="loraCmd(4)">RX Start</button>
+      <button class="warn sm" onclick="loraCmd(0)">RX Stop</button>
+      <button class="sm" onclick="loraRefresh()">Refresh</button>
     </div>
-    <div class="row">
-      <button class="sm" onclick="loraCmd(1)">Carrier</button>
-      <button class="sm" onclick="loraCmd(2)">Modulated</button>
-      <button class="sm" onclick="loraCmd(3)">Packet</button>
-      <button class="sm" onclick="loraCmd(4)">RX</button>
-      <button class="sm" onclick="loraCmd(5)">Sweep</button>
+    <div id="loraAutoDiv" class="row" style="margin-top:4px">
+      <button class="sm" id="loraAutoBtn" onclick="loraAutoToggle()">Auto Refresh (2s)</button>
+      <span id="loraAutoStatus" style="font-size:11px;color:var(--dim)"></span>
     </div>
     <hr style="border-color:var(--border);margin:8px 0">
-    <div class="row">
-      <label>Freq(MHz)</label>
-      <input type="number" id="loraFreqIn" value="922" min="920" max="925">
-      <button class="sm" onclick="loraCfg()">Set</button>
-    </div>
-    <div class="row">
-      <label>Power(dBm)</label>
-      <input type="number" id="loraPwrIn" value="14" min="-4" max="22" style="width:60px">
-      <label style="min-width:auto">SF</label>
-      <select id="loraSfIn" style="width:60px">
-        <option>7</option><option>8</option><option>9</option>
-        <option>10</option><option>11</option><option>12</option>
-      </select>
-      <label style="min-width:auto">BW</label>
-      <select id="loraBwIn" style="width:80px">
-        <option value="0">125kHz</option><option value="1">250kHz</option><option value="2">500kHz</option>
-      </select>
+    <div style="font-size:11px;color:var(--dim)">
+      <div>Frame: [Magic:AA][Type:01][Seq][Flags:01][Count:4B][Uptime:4B][CRC16:2B][Pad:2B]</div>
+      <div>Crypto: AES-128-ECB keystream XOR (nRF52840 HW)</div>
+      <div>FEC: LoRa CR4/6 + LoRa HW CRC + App CRC-16</div>
+      <div>Radio: SF9 / BW125kHz / 922.1MHz / 14dBm</div>
     </div>
   </div>
 </div>
@@ -472,14 +519,47 @@ async function readAll() {
     const lm = ['OFF','ON','1-Beat','2-Beat'];
     setBadge('ledState', lm[d.output.led]||'?', d.output.led?'on':'off');
   }
+  if(d.sensor) {
+    const ss = ['Offline','OK','Error'];
+    setBadge('senStatus', ss[d.sensor.status]||'?', d.sensor.status===1?'on':d.sensor.status===2?'err':'off');
+    document.getElementById('senCnt').textContent = d.sensor.read_cnt;
+    document.getElementById('senErr').textContent = d.sensor.err_cnt;
+    if(d.sensor.status === 1) {
+      document.getElementById('senMois').textContent = d.sensor.mois.toFixed(1) + '%';
+      document.getElementById('senTemp').textContent = d.sensor.temp.toFixed(1) + '°C';
+      document.getElementById('senEC').textContent = d.sensor.ec + ' us/cm';
+    } else {
+      document.getElementById('senMois').textContent = '-';
+      document.getElementById('senTemp').textContent = '-';
+      document.getElementById('senEC').textContent = '-';
+    }
+  }
+  if(d.sensor2) {
+    const ss = ['Offline','OK','Error'];
+    setBadge('sen2Status', ss[d.sensor2.status]||'?', d.sensor2.status===1?'on':d.sensor2.status===2?'err':'off');
+    document.getElementById('sen2Cnt').textContent = d.sensor2.read_cnt;
+    document.getElementById('sen2Err').textContent = d.sensor2.err_cnt;
+    if(d.sensor2.status === 1) {
+      document.getElementById('sen2Humi').textContent = d.sensor2.humi.toFixed(1) + '%RH';
+      document.getElementById('sen2Temp').textContent = d.sensor2.temp.toFixed(1) + '°C';
+    } else {
+      document.getElementById('sen2Humi').textContent = '-';
+      document.getElementById('sen2Temp').textContent = '-';
+    }
+  }
   if(d.lora) {
-    const ls = ['IDLE','TX_CW','TX_MOD','TX_PKT','RX','SWEEP','DEFAULT'];
-    setBadge('loraState', ls[d.lora.state]||'?', d.lora.state?'active':'off');
+    const ls = ['IDLE','RX_LISTEN','RX_ACTIVE','TX_PKT','RX','SWEEP','DEFAULT'];
+    setBadge('loraState', ls[d.lora.state]||'?', d.lora.state?'on':'off');
     document.getElementById('loraFreq').textContent = d.lora.freq + ' MHz';
     document.getElementById('loraPwr').textContent = d.lora.power + ' dBm';
-    document.getElementById('loraRssi').textContent = d.lora.rssi + ' dBm / SNR ' + d.lora.snr;
+    const rssiTxt = d.lora.rssi !== 0 ? d.lora.rssi + ' dBm / SNR ' + d.lora.snr : '-';
+    document.getElementById('loraRssi').textContent = rssiTxt;
     document.getElementById('loraTx').textContent = d.lora.tx_cnt;
     document.getElementById('loraRx').textContent = d.lora.rx_cnt;
+    document.getElementById('loraErr').textContent = d.lora.rx_err || 0;
+    document.getElementById('loraLastCnt').textContent = d.lora.rx_cnt > 0 ? d.lora.last_count : '-';
+    document.getElementById('loraLastSeq').textContent = d.lora.rx_cnt > 0 ? d.lora.last_seq : '-';
+    document.getElementById('loraGwUp').textContent = d.lora.rx_cnt > 0 ? d.lora.last_uptime + 's' : '-';
   }
   if(d.ble) {
     const bs = ['OFF','ADVERT','CONNECTED'];
@@ -521,13 +601,22 @@ async function led(mode) { doCmd(()=>post('/api/led',{mode})); }
 async function supply12v(on) { doCmd(()=>post('/api/supply12v',{on})); }
 async function loraCmd(cmd) { doCmd(()=>post('/api/lora/cmd',{cmd})); }
 async function loraReset() { doCmd(()=>post('/api/lora/reset')); }
-async function loraCfg() {
-  doCmd(()=>post('/api/lora/config',{
-    freq:parseInt(document.getElementById('loraFreqIn').value),
-    power:parseInt(document.getElementById('loraPwrIn').value),
-    sf:parseInt(document.getElementById('loraSfIn').value),
-    bw:parseInt(document.getElementById('loraBwIn').value),
-  }));
+async function loraRefresh() { await readAll(); updateLog(); }
+let loraAutoTimer = null;
+function loraAutoToggle() {
+  if (loraAutoTimer) {
+    clearInterval(loraAutoTimer);
+    loraAutoTimer = null;
+    document.getElementById('loraAutoStatus').textContent = '';
+    document.getElementById('loraAutoBtn').textContent = 'Auto Refresh (2s)';
+  } else {
+    loraAutoTimer = setInterval(async ()=>{
+      await readAll(); updateLog();
+      document.getElementById('loraAutoStatus').textContent = 'Updated ' + new Date().toLocaleTimeString();
+    }, 2000);
+    document.getElementById('loraAutoBtn').textContent = 'Stop Auto';
+    document.getElementById('loraAutoStatus').textContent = 'Running...';
+  }
 }
 async function bleCmd(cmd) { doCmd(()=>post('/api/ble/cmd',{cmd})); }
 async function bleReset() { doCmd(()=>post('/api/ble/reset')); }
@@ -547,6 +636,26 @@ async function sendRaw() {
 }
 // Manual refresh button only
 async function manualRefresh() { await readAll(); updateLog(); }
+
+let autoRefreshTimer = null;
+function toggleAutoRefresh() {
+  if (autoRefreshTimer) {
+    clearInterval(autoRefreshTimer);
+    autoRefreshTimer = null;
+    document.getElementById('autoRefreshBtn').textContent = 'Auto (5s)';
+    document.getElementById('autoRefreshBtn').className = 'sm';
+    document.getElementById('autoRefreshStatus').textContent = '';
+  } else {
+    manualRefresh();
+    autoRefreshTimer = setInterval(async () => {
+      await readAll(); updateLog();
+      document.getElementById('autoRefreshStatus').textContent = 'Updated ' + new Date().toLocaleTimeString();
+    }, 5000);
+    document.getElementById('autoRefreshBtn').textContent = 'Stop Auto';
+    document.getElementById('autoRefreshBtn').className = 'sm warn';
+    document.getElementById('autoRefreshStatus').textContent = 'Running...';
+  }
+}
 
 // --- Vibration sensor ---
 let vibTimer = null;

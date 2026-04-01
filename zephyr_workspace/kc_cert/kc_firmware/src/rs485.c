@@ -87,9 +87,37 @@ void rs485_send(const uint8_t *data, uint16_t len)
 		uart_poll_out(uart_dev, data[i]);
 	}
 
-	/* Wait TX complete: ~1.04ms per byte @ 9600 */
-	k_busy_wait((uint32_t)len * 1100 + 500);
+	/* uart_poll_out은 바이트 전송 완료까지 대기하므로
+	 * 마지막 바이트 stop bit + 여유만 필요 */
+	k_busy_wait(1200);
 	rx_mode();
+}
+
+void rs485_flush_rx(void)
+{
+	uart_irq_rx_disable(uart_dev);
+	rx_pos = 0;
+	last_rx_time = 0;
+	uart_irq_rx_enable(uart_dev);
+}
+
+int rs485_set_baudrate(uint32_t baud)
+{
+	struct uart_config cfg;
+	int ret;
+
+	ret = uart_config_get(uart_dev, &cfg);
+	if (ret < 0) {
+		return ret;
+	}
+
+	cfg.baudrate = baud;
+	uart_irq_rx_disable(uart_dev);
+	ret = uart_configure(uart_dev, &cfg);
+	rx_pos = 0;
+	uart_irq_rx_enable(uart_dev);
+
+	return ret;
 }
 
 int rs485_receive(uint8_t *buf, uint16_t max_len, uint16_t timeout_ms)

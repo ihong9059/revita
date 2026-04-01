@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define MODBUS_SLAVE_ADDR  0x01
+#define MODBUS_SLAVE_ADDR  0x10  /* 0x01은 외부 센서가 사용 */
 #define MODBUS_MAX_FRAME   256
 
 /* Function codes */

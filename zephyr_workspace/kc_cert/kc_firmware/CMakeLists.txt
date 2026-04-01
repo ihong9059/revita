@@ -8,4 +8,7 @@ target_sources(app PRIVATE
     src/rs485.c
     src/registers.c
     src/drivers.c
+    src/lora.c
+    src/sensor.c
+    src/sensor2.c
 )
