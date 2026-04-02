@@ -56,12 +56,19 @@ padding:6px 10px;border-radius:4px;font-family:monospace;font-size:13px}
 .badge.on{background:var(--ok);color:#000}.badge.off{background:var(--dim);color:#fff}
 .badge.active{background:var(--warn);color:#000}
 .full-w{grid-column:1/-1}
+#flashNotify{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+background:#ffffff;color:#000;padding:16px 48px;border-radius:12px;
+font-size:20px;font-weight:bold;opacity:0;transition:opacity 0.3s;z-index:9999;
+pointer-events:none;box-shadow:0 0 30px rgba(255,255,255,0.6)}
+.ver{font-size:11px;color:var(--dim);margin-left:8px}
 </style>
 </head>
 <body>
 
+<div id="flashNotify">DATA RECEIVED</div>
+
 <div class="top">
-  <h1>KC 기능시험 - 리비타 링크 RS485</h1>
+  <h1>KC 기능시험 - 리비타 링크 RS485 <span class="ver">v1.4</span></h1>
   <div class="conn">
     <span class="dot" id="connDot"></span>
     <input id="portInput" value="/dev/ttyUSB1" placeholder="Serial port">
@@ -419,6 +426,29 @@ padding:6px 10px;border-radius:4px;font-family:monospace;font-size:13px}
 const API = '';
 let polling = null;
 
+// --- Alarm beep ---
+let audioCtx = null;
+function beep(freq=800, duration=100, volume=0.3) {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.frequency.value = freq;
+  gain.gain.value = volume;
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration / 1000);
+}
+
+// --- Flash notification ---
+function flashNotify() {
+  const el = document.getElementById('flashNotify');
+  el.style.opacity = '1';
+  beep();
+  setTimeout(() => { el.style.opacity = '0'; }, 1000);
+}
+
 // --- Helpers ---
 async function post(url, body={}) {
   const r = await fetch(API+url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
@@ -612,6 +642,7 @@ function loraAutoToggle() {
   } else {
     loraAutoTimer = setInterval(async ()=>{
       await readAll(); updateLog();
+      beep();
       document.getElementById('loraAutoStatus').textContent = 'Updated ' + new Date().toLocaleTimeString();
     }, 2000);
     document.getElementById('loraAutoBtn').textContent = 'Stop Auto';
@@ -649,6 +680,7 @@ function toggleAutoRefresh() {
     manualRefresh();
     autoRefreshTimer = setInterval(async () => {
       await readAll(); updateLog();
+      flashNotify();
       document.getElementById('autoRefreshStatus').textContent = 'Updated ' + new Date().toLocaleTimeString();
     }, 5000);
     document.getElementById('autoRefreshBtn').textContent = 'Stop Auto';
