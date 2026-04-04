@@ -20,6 +20,8 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "tower_port.h"
+
 /* ── LoRa parameters ── */
 #define LORA_FREQ       922100000
 #define LORA_SF         12
@@ -30,12 +32,6 @@
 #define LORA_PAYLOAD    32
 
 #define RX_TIMEOUT_MS   5000
-
-/* ── MCP23017 ── */
-#define REG_IODIRA   0x00
-#define REG_OLATA    0x14
-#define GPA3_MUX_SEL (1 << 3)
-#define GPA4_MUX_EN  (1 << 4)
 
 /* ── Devices ── */
 static const struct device *lora_dev;
@@ -60,29 +56,29 @@ static int mux_enable_rs485(void)
 {
 	uint8_t iodira, gpa;
 
-	if (mcp_read(REG_IODIRA, &iodira)) return -1;
-	iodira &= ~(GPA3_MUX_SEL | GPA4_MUX_EN);
-	if (mcp_write(REG_IODIRA, iodira)) return -1;
+	if (mcp_read(MCP_REG_IODIRA, &iodira)) return -1;
+	iodira &= ~(MCP_GPA3_MUX_SEL | MCP_GPA4_MUX_EN_N);
+	if (mcp_write(MCP_REG_IODIRA, iodira)) return -1;
 
-	if (mcp_read(REG_OLATA, &gpa)) return -1;
-	gpa &= ~GPA3_MUX_SEL;  /* SEL=LOW → RS485 */
-	gpa &= ~GPA4_MUX_EN;   /* EN#=LOW → Enable */
-	return mcp_write(REG_OLATA, gpa);
+	if (mcp_read(MCP_REG_OLATA, &gpa)) return -1;
+	gpa &= ~MCP_GPA3_MUX_SEL;   /* SEL=LOW → RS485 */
+	gpa &= ~MCP_GPA4_MUX_EN_N;  /* EN#=LOW → Enable */
+	return mcp_write(MCP_REG_OLATA, gpa);
 }
 
 /* ── RS485 direction control ── */
 static void rs485_tx_mode(void)
 {
-	gpio_pin_set(gpio0_dev, 21, 1);  /* RE#=HIGH */
-	gpio_pin_set(gpio0_dev, 17, 1);  /* DE=HIGH */
+	gpio_pin_set(gpio0_dev, PIN_RS485_RE_N, 1);  /* RE#=HIGH */
+	gpio_pin_set(gpio0_dev, PIN_RS485_DE, 1);    /* DE=HIGH */
 	k_usleep(100);
 }
 
 static void rs485_rx_mode(void)
 {
 	k_usleep(500);
-	gpio_pin_set(gpio0_dev, 17, 0);  /* DE=LOW */
-	gpio_pin_set(gpio0_dev, 21, 0);  /* RE#=LOW */
+	gpio_pin_set(gpio0_dev, PIN_RS485_DE, 0);    /* DE=LOW */
+	gpio_pin_set(gpio0_dev, PIN_RS485_RE_N, 0);  /* RE#=LOW */
 }
 
 static void rs485_send(const char *str)
@@ -129,8 +125,8 @@ int main(void)
 		printk("GPIO0 not ready\n");
 		return -1;
 	}
-	gpio_pin_configure(gpio0_dev, 17, GPIO_OUTPUT_LOW);  /* DE */
-	gpio_pin_configure(gpio0_dev, 21, GPIO_OUTPUT_LOW);  /* RE# */
+	gpio_pin_configure(gpio0_dev, PIN_RS485_DE, GPIO_OUTPUT_LOW);
+	gpio_pin_configure(gpio0_dev, PIN_RS485_RE_N, GPIO_OUTPUT_LOW);
 
 	/* UART0 (RS485) */
 	uart0_dev = DEVICE_DT_GET(DT_NODELABEL(uart0));
@@ -149,7 +145,7 @@ int main(void)
 	if (device_is_ready(i2c_dev)) {
 		k_msleep(100);
 		for (uint8_t addr = 0x20; addr <= 0x27; addr++) {
-			uint8_t reg = REG_IODIRA, val;
+			uint8_t reg = MCP_REG_IODIRA, val;
 			if (i2c_write_read(i2c_dev, addr, &reg, 1, &val, 1) == 0) {
 				mcp_addr = addr;
 				break;
