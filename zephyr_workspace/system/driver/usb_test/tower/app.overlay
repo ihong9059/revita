@@ -1,0 +1,18 @@
+/*
+ * USB CDC ACM - Tower
+ * Console redirected to USB CDC ACM (Tower 보드의 MCU_USB_D_P/D_N → USB 커넥터)
+ *
+ * 호스트에서 새 ttyACM 디바이스로 enumerate 됨 (보통 /dev/ttyACM0).
+ */
+
+/ {
+	chosen {
+		zephyr,console = &cdc_acm_uart0;
+	};
+};
+
+&zephyr_udc0 {
+	cdc_acm_uart0: cdc_acm_uart0 {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};

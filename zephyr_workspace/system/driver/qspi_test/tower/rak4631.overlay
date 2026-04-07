@@ -1,0 +1,60 @@
+/*
+ * QSPI Flash test - Tower
+ *
+ * Console: uart0 (P0.20 TX / P0.19 RX) @ 115200 → ttyUSB1
+ * QSPI: MX25R1635F (16Mbit) — RAK4631 모듈 내장
+ */
+
+/ {
+	chosen {
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+	};
+};
+
+&uart0 {
+	compatible = "nordic,nrf-uarte";
+	status = "okay";
+	current-speed = <115200>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+
+&qspi {
+	status = "okay";
+	pinctrl-0 = <&qspi_default>;
+	pinctrl-1 = <&qspi_sleep>;
+	pinctrl-names = "default", "sleep";
+
+	mx25r16: mx25r1635f@0 {
+		compatible = "nordic,qspi-nor";
+		reg = <0>;
+		sck-frequency = <8000000>;
+		jedec-id = [c2 28 15];
+		size = <16777216>;  /* 16 Mbit = 2 MB */
+		has-dpd;
+		t-enter-dpd = <10000>;
+		t-exit-dpd = <35000>;
+	};
+};
+
+&pinctrl {
+	uart0_default: uart0_default {
+		group1 {
+			psels = <NRF_PSEL(UART_TX, 0, 20)>;
+		};
+		group2 {
+			psels = <NRF_PSEL(UART_RX, 0, 19)>;
+			bias-pull-up;
+		};
+	};
+
+	uart0_sleep: uart0_sleep {
+		group1 {
+			psels = <NRF_PSEL(UART_TX, 0, 20)>,
+				<NRF_PSEL(UART_RX, 0, 19)>;
+			low-power-enable;
+		};
+	};
+};
