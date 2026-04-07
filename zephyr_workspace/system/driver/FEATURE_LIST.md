@@ -14,20 +14,20 @@
 
 ## 0. 공통 인프라 (Tower / Link 동일)
 
-| 카테고리 | 기능 | 비고 |
-|---------|------|------|
-| 시스템 | Zephyr 부팅 / printk console | RAK_UART1(P0.20/P0.19) → 디버그 |
-| 시스템 | Workqueue / 스레드 분리 | RX/TX/sensor poll 분리 |
-| 시스템 | 시스템 시각 (k_uptime) | epoch 동기화는 LoRa beacon으로 |
-| 시스템 | Watchdog (nRF WDT) | hang 복구, 미구현 → 추가 필요 |
-| 시스템 | RTT 또는 UART log | 디버깅용 (log level runtime 변경) |
-| 저장 | NVS / Settings 모듈 | DeviceID, link_id, key, period 등 영구 저장 |
-| 보안 | AES-128 ECB (mbedTLS or PSA) | LoRa 프레임 암복호 |
-| 보안 | CRC16-CCITT (poly 0x1021) | LoRa 프레임 무결성 |
-| 보안 | CRC16-Modbus (poly 0xA001) | RS485 프레임 |
-| 시간 | k_timer / k_work_delayable | 주기 폴링, TDMA 슬롯, 명령 duration |
-| 부트 | DeviceID 추출 (FICR DEVICEID) | OP_JOIN_REQ에 사용 |
-| OTA | MCUboot + DFU (옵션) | LTE/USB 경로 전제, LoRa 인라인은 v2 |
+| 카테고리 | 기능 | 상태 | 비고 |
+|---------|------|:----:|------|
+| 시스템 | Zephyr 부팅 / printk console | ✅ | Tower=`&uart0` P0.20/P0.19, Link=`&uart1` P0.16/P0.15 (다름!) |
+| 시스템 | Workqueue / 스레드 분리 | 🔲 | RX/TX/sensor poll 분리 |
+| 시스템 | 시스템 시각 (k_uptime) | 🔲 | epoch 동기화는 LoRa beacon으로 |
+| 시스템 | Watchdog (nRF WDT) | 🔲 | hang 복구 |
+| 시스템 | RTT 또는 UART log | 🔲 | log level runtime 변경 |
+| 저장 | NVS / Settings 모듈 | 🔲 | DeviceID, link_id, key, period 등 |
+| 보안 | AES-128 ECB (mbedTLS or PSA) | 🔲 | LoRa 프레임 암복호 |
+| 보안 | CRC16-CCITT (poly 0x1021) | 🔲 | LoRa 프레임 무결성 |
+| 보안 | CRC16-Modbus (poly 0xA001) | 🔲 | RS485 프레임 |
+| 시간 | k_timer / k_work_delayable | 🔲 | 주기 폴링, TDMA 슬롯 |
+| 부트 | DeviceID 추출 (FICR DEVICEID) | 🔲 | OP_JOIN_REQ |
+| OTA | MCUboot + DFU (옵션) | 🔲 | LTE/USB 경유, LoRa 인라인은 v2 |
 
 ---
 
@@ -39,26 +39,31 @@
 ## A1. MCU 직접 제어 (nRF52840 GPIO)
 
 ### A1.1 I2C 마스터 (P0.13 SDA / P0.14 SCL)
-- [ ] I2C0 400 kHz Fast Mode 초기화
-- [ ] MCP23017 슬레이브 (0x20) 통신
+- [x] **I2C0 100 kHz Standard Mode** (Fast 400kHz는 RAK4631 보드에서 불안정)
+  - **반드시 overlay 에 핀 명시**: `TWIM_SDA P0.13`, `TWIM_SCL P0.14`
+  - 기본 board overlay 만으로는 MCP 응답 안 함 (학습됨, 2026-04-07)
+- [x] MCP23017 슬레이브 (0x20) 통신 — `buzzer_test/tower` 검증
 - [ ] (예비) 추가 I2C 슬레이브 확장 슬롯
 - [ ] I2C 에러 복구 (recover bus on stuck SDA)
 
 ### A1.2 UART
-- [ ] **UART_DEBUG** (RAK_UART1, P0.20 TX / P0.19 RX) — printk console
-  - 115200 8N1
-  - cutecom으로 사용자 직접 확인 (ttyUSB1)
-- [ ] **UART_LTE** ⚠️ — 회로도상 RAK_UART1이 LTE 모뎀과도 연결됨
-  - **결정 필요**: 디버그용으로 쓸지 LTE 전용으로 쓸지 (UART_MUX 경유 가능성 검토)
-  - kc_cert/system/lte는 RAK_UART2(P0.16/P0.15)를 LTE에 사용 → **이쪽 권장**
-- [ ] **UART_RS485** (RAK_UART2, P0.16 TX / P0.15 RX) — Modbus RTU
-  - 9600 8N1 (센서 기본, 사양서로 최종 확정)
-  - DE=P0.17, RE#=P0.21 (직접 GPIO 제어)
-  - half-duplex 전환: TX flush → DE↓ → 1 char idle → RE#↑
+- [x] **UART_DEBUG** (Zephyr `&uart0`, **P0.20 TX / P0.19 RX** = RAK_UART1)
+  - 115200 8N1 → /dev/ttyUSB1
+  - 외부 USB-UART 직결 (J-Link CDC 아님)
+  - Tower 의 P0.20 은 동시에 TMUX1574 → RS485 트랜시버로도 라우팅됨
+  - `system/tower` 디버그 스켈레톤에서 검증
+- [ ] **UART_LTE** — 회로도상 RAK_UART2 (P0.16/P0.15) → LTE 모듈
+  - Zephyr `&uart1` 사용 예정
+  - kc_cert/system/lte 패턴 참조
+- [x] **UART_RS485** — uart0 (P0.20/P0.19) 공유 (디버그 console 과 같은 핀)
+  - 115200 8N1 (kc_cert/tower 검증값)
+  - DE=P0.17, RE#=P0.21 (직접 GPIO)
+  - DE=LOW 일 때 트랜시버 high-Z → 디버그 printk 가 wire 에 안 나감
+  - **HW 의심으로 wire 출력 미확인** (rs485_test/gateway, 다음 세션 점검)
 
 ### A1.3 GPIO (직접 핀)
-- [ ] `PIN_RS485_DE` (P0.17) — 출력, RS485 송신 enable
-- [ ] `PIN_RS485_RE_N` (P0.21) — 출력, RS485 수신 enable (active low)
+- [x] `PIN_RS485_DE` (P0.17) — 출력, RS485 송신 enable
+- [x] `PIN_RS485_RE_N` (P0.21) — 출력, RS485 수신 enable (active low)
 - [ ] `PIN_LTE_RI` (P0.10/NFC2) — 입력 인터럽트, **UICR.NFCPINS off 필요**
 - [ ] `PIN_LTE_DTR` (P0.09/NFC1) — 출력, **UICR.NFCPINS off 필요**
 - [ ] `PIN_BTN` (P1.02/SW2) — 입력, 사용자 버튼 (디바운스, 짧게/길게 구분)
@@ -66,39 +71,41 @@
 - [ ] WDT kick
 
 ### A1.4 ADC (SAADC)
-- [ ] `ADC_CH_BAT` (AIN3 / P0.05) — 배터리 전압 측정
-- [ ] 분압 보정 (R-divider 비율 적용)
+- [x] **`ADC_CH_BAT` (AIN3 / P0.05)** — `adc_test/tower` 검증
+  - 12-bit, Gain 1/6, Internal 0.6V ref
+  - 분압 1M / 220k → ×5.545
 - [ ] 평균/필터링 (이동평균 N=8)
 - [ ] 저전압 임계치 → 이벤트 발행
 
 ### A1.5 QSPI (NOR Flash MX25R1635, 16Mbit)
-- [ ] QSPI 드라이버 활성화 (P0.02/03/26/28/29/30)
+- [x] **QSPI 드라이버 활성화** — `qspi_test/tower` 검증
+- [x] **셀프 테스트** (erase / write / read / verify) — PASS
 - [ ] LittleFS 또는 NVS 마운트
 - [ ] 용도: 텔레메트리 버퍼링, MQTT 미연결 시 큐, 로그, 설정값
-- [ ] 셀프 테스트 (write/read/erase round-trip)
 
 ---
 
 ## A2. MCP23017 I/O Expander (0x20) — 보조 GPIO 16개
 
 ### A2.1 드라이버 베이스
-- [ ] I2C 초기화 + IODIR/IPOL/IOCON 설정
-- [ ] OLAT 캐시 (read-modify-write 방지)
-- [ ] 단일 비트 set/clr/toggle
+- [x] I2C 초기화 + IODIR 설정 — `buzzer_test/tower` 검증
+- [x] OLAT 캐시 (read-modify-write 방지)
+- [x] 단일 비트 set/clr (mask 기반)
 - [ ] GPA/GPB 일괄 read
+- [ ] IPOL / IOCON 고급 설정
 
 ### A2.2 GPA 매핑 (전원 / LTE / MUX / 카메라)
 - [ ] `GPA0 = LTE_RST#` — LTE 모뎀 리셋 (active low, 500 ms 펄스)
-- [ ] `GPA2 = 12_14V_EN` — 12~14 V 부스트 enable
-- [ ] `GPA3 = MUX_SEL` — UART MUX 채널 선택 (A/B)
-- [ ] `GPA4 = MUX_EN#` — UART MUX enable (active low)
-- [ ] `GPA5 = 3V3_EN` — 3.3 V 레일 enable
+- [x] `GPA2 = 12_14V_EN` — 12~14 V 부스트 (buzzer_test 에서 HIGH 검증)
+- [~] `GPA3 = MUX_SEL` — UART MUX 채널 (코드 작성, wire 미검증)
+- [~] `GPA4 = MUX_EN#` — UART MUX enable (코드 작성, wire 미검증)
+- [ ] `GPA5 = 3V3_EN` — 3.3 V 레일 enable (코드 작성, 부하 측정 필요)
 - [ ] `GPA6 = 5V_EN` — 5 V 레일 enable
 - [ ] `GPA7 = CAM_EN` — 카메라 모듈 전원
 
 ### A2.3 GPB 매핑 (보조 리셋 / 출력)
 - [ ] `GPB0 = SBC_RST#` — SBC(Luckfox) 리셋 (active low)
-- [ ] `GPB1 = BUZZER_EN` — 부저
+- [x] **`GPB1 = BUZZER_EN`** — `buzzer_test/tower` 검증 ✅
 - [ ] `GPB6 = LED_EN` — 외부 LED 출력 (R45 470Ω 직렬)
 
 ### A2.4 안전 시퀀스
@@ -162,8 +169,12 @@
 ## A5. SBC (Luckfox / RPi) 인터페이스
 
 ### A5.1 USB CDC (USB0)
-- [ ] (Linux 측) 본 문서 범위 밖 — SBC가 PPP/MQTT 담당
-- [ ] MCU 측 모니터링: SBC가 살아있는지 확인 (heartbeat)
+- [x] **MCU USB CDC ACM** — `usb_test/tower` 검증
+  - VID=0x2FE3 / PID=0x0100, host /dev/ttyACMx
+  - 매 2초 카운터 송신 + RX echo
+  - Tower 의 MCU_USB_D_P/D_N → USB 커넥터
+- [ ] (Linux 측) SBC 가 PPP/MQTT 담당
+- [ ] MCU 측 모니터링: SBC heartbeat 확인
 
 ### A5.2 UART (UART_MUX 경유)
 - [ ] MCU ↔ SBC UART (RS485 비점유 시간대)
@@ -180,9 +191,11 @@
 ## A6. RS485 (Modbus RTU 마스터) — Tower 직결 센서
 
 ### A6.1 물리 계층
-- [ ] UART2 9600 8N1 (사양서로 baud 확정)
-- [ ] DE/RE# 동기 토글 (TX/RX 전환 시 1 char idle)
-- [ ] 3.5 char inter-frame gap (~3.6 ms @ 9600)
+- [~] **uart0 (P0.20/P0.19)** — RAK_UART1 → MUX → 트랜시버 (NOT uart1!)
+  - 코드 작성됨 (`rs485_test/gateway`), wire HW 검증 미해결
+  - DE=P0.17, RE#=P0.21
+- [x] DE/RE# 동기 토글 패턴 학습 (TX 후 2ms shift register flush)
+- [ ] 3.5 char inter-frame gap
 - [ ] CRC16-Modbus (poly 0xA001)
 
 ### A6.2 Modbus 마스터 엔진
@@ -214,10 +227,11 @@
 - Duty cycle ≤ 1 % (KR ISM)
 
 ### A7.2 드라이버 기능
-- [ ] Zephyr LoRa subsys (`lora_send`, `lora_recv_async`) 또는 SX1262 HAL 직접 사용
-- [ ] TX/RX 전환 + RX continuous mode
-- [ ] RSSI / SNR 측정 (수신 시 메타데이터)
-- [ ] 듀티 사이클 회계 (한 시간 윈도우 누적, ≥ 99 % 휴식 보장)
+- [x] **Zephyr LoRa subsys** (`lora_send`, `lora_recv`) — `lora_test/gateway` 검증
+- [x] TX/RX 전환 + 5초 timeout 수신
+- [x] RSSI / SNR 측정 (-46 ~ -65 dBm, +5~+8)
+- [ ] 듀티 사이클 회계 (한 시간 윈도우 누적, ≥ 99% 휴식)
+- [ ] RX continuous mode (현재는 수동 reconfigure)
 - [ ] (옵션) listen-before-talk
 
 ### A7.3 RVT-LoRa Hub 로직 (Tower = node 0x00)
@@ -297,9 +311,11 @@
   - **Tower와 다른 매핑** (Tower는 `&uart0` + P0.20/P0.19). 2026-04-07 양방향 확정.
   - TX/RX 모두 `system/driver/lora_test/node`에서 검증 완료
   - 주의: kc_cert/system/link 과거 overlay는 RX=P0.02로 잘못 잡혀있었음 (TX만 사용했기에 문제 안 됨)
-- [ ] **UART_RS485** (RAK_UART2, P0.16 TX / P0.15 RX) — Modbus 마스터
-  - DE=P1.04, RE#=P1.03 (Tower와 핀 위치 다름!)
-  - 9600 8N1
+- [x] **UART_RS485** — Zephyr `&uart0`, **P0.20 TX / P0.19 RX** @ 9600 8N1
+  - DE=P1.04, RE#=P1.03 (직접 GPIO, Tower 와 핀 다름!)
+  - 12V_EN=P0.17 (직접 GPIO) HIGH 필요
+  - **TX→RX 전환 시 `k_busy_wait(2000)` (2ms shift register flush) 필수**
+  - `rs485_test/node` wire 검증 완료 ✅
 
 ### B1.2 GPIO (직접 핀, link.h 기준)
 
@@ -314,12 +330,12 @@
 - [ ] `PIN_Y_EN_P2` (P1.02) — 출력
 
 **RS485 방향**
-- [ ] `PIN_RS485_DE` (P1.04) — 출력 (Tower와 핀 다름)
-- [ ] `PIN_RS485_RE_N` (P1.03) — 출력
+- [x] `PIN_RS485_DE` (P1.04) — 출력, `rs485_test/node` 검증
+- [x] `PIN_RS485_RE_N` (P1.03) — 출력, 검증
 
 **전원/액추에이터 enable**
-- [ ] `PIN_12V_EN` (P0.17) — 출력 (R46 10k 직렬)
-- [ ] `PIN_BUZZER_EN` (P0.24) — 출력
+- [x] `PIN_12V_EN` (P0.17) — 출력, `buzzer_test/node` + `rs485_test/node` 검증
+- [x] `PIN_BUZZER_EN` (P0.24) — 출력, `buzzer_test/node` 검증 ✅
 
 **입력**
 - [ ] `PIN_VIB_SENSE` (P0.21) — 입력 인터럽트
@@ -328,13 +344,16 @@
 - [ ] `PIN_DIO_Y` (P0.09/NFC1) — 입력 인터럽트, **UICR.NFCPINS off 필요**
 
 ### B1.3 ADC (SAADC)
-- [ ] `ADC_CH_BAT` (AIN7 / P0.31) — 배터리 전압
+- [x] **`ADC_CH_BAT` (AIN7 / P0.31)** — `adc_test/node` 검증
+  - 12-bit, Gain 1/6, Internal 0.6V ref
+  - 분압 1M / 1M → ×2
 - [ ] `ADC_CH_BTN` (AIN3 / P0.05) — 버튼 (디지털도 가능)
 - [ ] `ADC_CH_X_EN_P2` (AIN2 / P0.04) — X채널 P2 모니터링
-- [ ] 평균 / 분압 보정
+- [ ] 평균 / 이동평균 N=8
 
 ### B1.4 QSPI (NOR Flash, 모듈/외장)
-- [ ] QSPI 드라이버 활성화 (P0.02/03/26/28/29/30)
+- [x] **QSPI 드라이버 활성화** — `qspi_test/node` 검증
+- [x] **셀프 테스트** (erase / write / read / verify) — PASS
 - [ ] LittleFS 또는 NVS 마운트
 - [ ] 용도: link_id, 키, 미전송 텔레메트리 큐, 유량 누적 백업
 
@@ -343,10 +362,12 @@
 ## B2. RS485 센서 마스터 (Modbus RTU)
 
 ### B2.1 물리 계층
-- [ ] UART2 9600 8N1
-- [ ] DE/RE# (P1.04/P1.03) 동기 토글
-- [ ] 3.5 char inter-frame gap
-- [ ] CRC16-Modbus
+- [x] **uart0 9600 8N1** (NOT uart2 — uart2 라벨은 회로도, Zephyr 에서는 uart0)
+- [x] **DE/RE# (P1.04/P1.03) 동기 토글** + 2ms shift register flush
+- [x] 12V_EN (P0.17) HIGH 트랜시버 전원
+- [x] wire 송신 검증 ✅ (`rs485_test/node`)
+- [ ] 3.5 char inter-frame gap (Modbus 프레임 분리)
+- [ ] CRC16-Modbus (poly 0xA001)
 
 ### B2.2 센서 스캐너 (RS485_PROTOCOL.md 기준)
 - [ ] **토양 센서 0x01** — addr=0x0000, 2 reg
@@ -408,8 +429,9 @@
 ## B5. LoRa Leaf (RVT-LoRa v1, node_id = 0x01..0xFE)
 
 ### B5.1 PHY (Tower와 동일)
-- [ ] 922.1 MHz / SF9 / BW125 / 14 dBm / 16 byte payload
-- [ ] AES-128 ECB + CRC16-CCITT
+- [x] **Zephyr LoRa subsys** — `lora_test/node` echo 검증 (SF12, RSSI -46~-65)
+- [x] TX→RX 전환, warmup TX 패턴 (radio 안정화)
+- [ ] AES-128 ECB + CRC16-CCITT (REVITA 프로토콜 단계)
 
 ### B5.2 MAC 로직
 - [ ] `OP_JOIN_REQ` 송신 (DeviceID 포함) — 부팅 후 link_id 미할당 시
@@ -454,22 +476,26 @@
 
 ---
 
-# PART C. 우선순위 매트릭스 (구현 순서 제안)
+# PART C. 우선순위 매트릭스 (구현 진척)
 
-| 순위 | Tower 기능 | Link 기능 | 비고 |
-|:----:|-----------|-----------|------|
-| 1 | A1.2 UART_DEBUG | B1.1 UART_DEBUG | ✅ Tower 완료 (2026-04-07) |
-| 2 | A2 MCP23017 driver | B1.2 GPIO 베이스 | I2C 의존 |
-| 3 | A1.5 QSPI / NVS | B1.4 QSPI / NVS | 설정 영속화 |
-| 4 | A6 RS485 (Modbus 마스터) | B2 RS485 센서 | 동일 엔진 공유 가능 |
-| 5 | A7.1~7.2 LoRa PHY | B5.1 LoRa PHY | 양쪽 동시 |
-| 6 | A7.3 RVT-LoRa Hub | B5.2 RVT-LoRa Leaf | JOIN/BEACON/TELEMETRY |
-| 7 | B3 관수 모터 (Link 단독) | — | 안전 cutoff 포함 |
-| 8 | B4 유량계 (Link 단독) | — | DIO 인터럽트 |
-| 9 | A4 LTE 모뎀 | — | (kc_cert/system/lte 참조) |
-| 10 | A8 MQTT 게이트웨이 | — | LTE 안정화 후 |
-| 11 | A3 UART MUX (SBC 협조) | — | 후순위, SBC 측 정의 후 |
-| 12 | A9 / B6 운영 기능 | A9 / B6 운영 기능 | 마무리 |
+| 순위 | Tower 기능 | Link 기능 | 상태 | 비고 |
+|:----:|-----------|-----------|:----:|------|
+| 1 | A1.2 UART_DEBUG | B1.1 UART_DEBUG | ✅ | 양쪽 핀 매핑 확정 |
+| 2 | A2 MCP23017 driver | B1.2 GPIO 베이스 | ✅ | I2C 핀 명시 + 100kHz, GPIO 검증 |
+| 3 | A1.5 QSPI | B1.4 QSPI | ✅ | MX25R1635F erase/write/read PASS |
+| 3' | A1.4 ADC | B1.3 ADC | ✅ | 배터리 전압 측정 |
+| 3'' | A2.3 BUZZER (MCP) | B1.2 BUZZER (직접) | ✅ | 양쪽 동작 |
+| 3''' | A5.1 USB CDC | — | ✅ | Tower USB CDC ACM |
+| 4 | A6 RS485 (Modbus 마스터) | B2 RS485 센서 | 🟡 | Link wire ✅, Tower wire HW 의심 |
+| 5 | A7.1~7.2 LoRa PHY | B5.1 LoRa PHY | ✅ | Gateway↔Node echo, SF12 검증 |
+| 6 | A7.3 RVT-LoRa Hub | B5.2 RVT-LoRa Leaf | 🔲 | JOIN/BEACON/TELEMETRY |
+| 7 | — | B3 관수 모터 | 🔲 | 안전 cutoff 포함 |
+| 8 | — | B4 유량계 | 🔲 | NFC 핀 GPIO 재할당 필요 |
+| 9 | A4 LTE 모뎀 | — | 🔲 | kc_cert/system/lte 참조 |
+| 10 | A8 MQTT 게이트웨이 | — | 🔲 | LTE 안정화 후 |
+| 11 | A3 UART MUX (SBC 협조) | — | 🔲 | SBC 측 정의 후 |
+| 12 | A9 / B6 운영 기능 | A9 / B6 운영 기능 | 🔲 | 마무리 |
+| - | A1.3 BTN/VIB_SENSE | B1.2 BTN/VIB_SENSE | 🔲 | 입력 인터럽트 |
 
 ---
 
@@ -498,17 +524,47 @@
 
 # PART E. 미해결 / 확인 필요 사항
 
-- [ ] **Tower 디버그 UART 결정**: RAK_UART1을 디버그로 쓰는 경우 LTE는 어디로? (kc_cert/system/lte는 RAK_UART2 사용)
-- [ ] **NFC 핀 GPIO 재할당** (UICR.NFCPINS): Tower(P0.09/P0.10), Link(P0.09/P0.10) 모두 필요
-- [ ] **카메라 인터페이스**: RS485인지 별도(SPI/I2C/USB)인지 회로도 재확인
-- [ ] **X/Y 채널 매핑**: Link 보드 X/Y가 정확히 무엇을 제어하는지 (밸브 vs 펌프) 확인
-- [ ] **유량계 입력 핀**: DIO_X / DIO_Y 중 어느 쪽인지 확인
-- [ ] **RS485 baudrate**: 9600 가정 — 센서 사양서로 확정
-- [ ] **NPK 단위/스케일** (RS485_PROTOCOL.md §6 참조)
-- [ ] **MCP23017 GPB6 LED**: 단일 LED인지 다채널인지
-- [ ] **Tower P1.04는 LED2 vs VIB_SENSE**: tower.h는 VIB_SENSE로 정의 — LED 사용 불가
+## 해결됨 (2026-04-07)
+- [x] **Tower 디버그 UART**: `&uart0` P0.20/P0.19 (RAK_UART1) 사용 → ttyUSB1
+  LTE 는 RAK_UART2 (P0.16/P0.15) → Zephyr `&uart1` 별도 매핑 예정
+- [x] **Link 디버그 UART**: `&uart1` P0.16/P0.15 → ttyUSB0 (Tower 와 다름)
+- [x] **Tower I2C0 핀 명시**: overlay 에서 SDA P0.13 / SCL P0.14, 100kHz Standard
+- [x] **9600 RS485 TX timing**: 마지막 byte shift register flush 위해 2ms busy_wait
+
+## HW 검증 미해결
+- [ ] **Tower RS485 wire 출력**: 코드 정리됨, A/B 라인에 신호 미확인 — 트랜시버/MUX/배선 점검 필요
+- [ ] **NFC 핀 GPIO 재할당** (`CONFIG_NFCT_PINS_AS_GPIOS=y` + UICR write):
+  Tower (P0.09/P0.10 = LTE_DTR/LTE_RI), Link (P0.09/P0.10 = DIO_Y/DIO_X)
+
+## 사양 확인 필요
+- [ ] **카메라 인터페이스**: RS485 인지 별도(SPI/I2C/USB) 인지 회로도 재확인
+- [ ] **X/Y 채널 매핑**: Link X/Y 가 정확히 무엇을 제어하는지 (밸브 vs 펌프)
+- [ ] **유량계 입력 핀**: DIO_X / DIO_Y 중 어느 쪽인지
+- [ ] **RS485 센서 baudrate**: 9600 가정 — 센서 사양서로 확정
+- [ ] **NPK 단위/스케일** (RS485_PROTOCOL.md §6)
+- [ ] **MCP23017 GPB6 LED**: 단일 LED 인지 다채널인지
+
+---
+
+# PART F. 구현 완료 프로젝트 (2026-04-07 기준)
+
+| 프로젝트 | 경로 | 검증 |
+|---------|------|:----:|
+| Tower 디버그 스켈레톤 | `system/tower/` | ✅ |
+| LoRa Gateway | `system/driver/lora_test/gateway/` | ✅ |
+| LoRa Node (echo) | `system/driver/lora_test/node/` | ✅ |
+| RS485 Node (wire 송신) | `system/driver/rs485_test/node/` | ✅ |
+| RS485 Gateway (wire 송신) | `system/driver/rs485_test/gateway/` | 🟡 HW 의심 |
+| Tower USB CDC ACM | `system/driver/usb_test/tower/` | ✅ |
+| QSPI Tower | `system/driver/qspi_test/tower/` | ✅ |
+| QSPI Node | `system/driver/qspi_test/node/` | ✅ |
+| Buzzer Tower (MCP23017) | `system/driver/buzzer_test/tower/` | ✅ |
+| Buzzer Node (직접 GPIO) | `system/driver/buzzer_test/node/` | ✅ |
+| ADC Tower (배터리) | `system/driver/adc_test/tower/` | ✅ |
+| ADC Node (배터리) | `system/driver/adc_test/node/` | ✅ |
 
 ---
 
 *작성: Claude Code*
-*최종 업데이트: 2026-04-07*
+*최초 작성: 2026-04-07*
+*최종 업데이트: 2026-04-07 (드라이버 검증 결과 반영)*
