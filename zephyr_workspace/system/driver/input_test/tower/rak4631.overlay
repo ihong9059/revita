@@ -1,9 +1,11 @@
 /*
- * USB CDC ACM - Tower
+ * Input test - Tower
  * Console: uart0 (P0.20 TX / P0.19 RX) @ 115200 → ttyUSB1
- * USB CDC: ttyACMx (호스트에서 enumerate)
  *
- * 양쪽 모두 출력
+ * BTN:        P1.02 (SW2)
+ * VIB_SENSE:  P1.04 (LED2)
+ *
+ * 참고: tower.h
  */
 
 / {
@@ -20,12 +22,6 @@
 	pinctrl-0 = <&uart0_default>;
 	pinctrl-1 = <&uart0_sleep>;
 	pinctrl-names = "default", "sleep";
-};
-
-&zephyr_udc0 {
-	cdc_acm_uart0: cdc_acm_uart0 {
-		compatible = "zephyr,cdc-acm-uart";
-	};
 };
 
 &pinctrl {

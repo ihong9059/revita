@@ -1,9 +1,7 @@
 /*
- * USB CDC ACM - Tower
+ * Host test - Tower
  * Console: uart0 (P0.20 TX / P0.19 RX) @ 115200 → ttyUSB1
- * USB CDC: ttyACMx (호스트에서 enumerate)
- *
- * 양쪽 모두 출력
+ * USB CDC: ttyACMx (host web → tower)
  */
 
 / {

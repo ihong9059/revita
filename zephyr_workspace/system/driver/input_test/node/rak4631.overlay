@@ -1,0 +1,45 @@
+/*
+ * Input test - Node (Link)
+ * Console: uart1 (P0.16 TX / P0.15 RX) @ 115200 → ttyUSB0
+ *
+ * BTN:        P0.05 (AIN3)
+ * VIB_SENSE:  P0.21 (UART1_DE)
+ *
+ * 참고: link.h
+ */
+
+/ {
+	chosen {
+		zephyr,console = &uart1;
+		zephyr,shell-uart = &uart1;
+	};
+};
+
+&uart1 {
+	compatible = "nordic,nrf-uarte";
+	status = "okay";
+	current-speed = <115200>;
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-1 = <&uart1_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+
+&pinctrl {
+	uart1_default: uart1_default {
+		group1 {
+			psels = <NRF_PSEL(UART_TX, 0, 16)>;
+		};
+		group2 {
+			psels = <NRF_PSEL(UART_RX, 0, 15)>;
+			bias-pull-up;
+		};
+	};
+
+	uart1_sleep: uart1_sleep {
+		group1 {
+			psels = <NRF_PSEL(UART_TX, 0, 16)>,
+				<NRF_PSEL(UART_RX, 0, 15)>;
+			low-power-enable;
+		};
+	};
+};

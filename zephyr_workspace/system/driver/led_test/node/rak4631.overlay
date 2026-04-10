@@ -1,0 +1,46 @@
+/*
+ * LED test - Node (Link)
+ * Console: uart1 (P0.16 TX only) @ 115200 → ttyUSB0
+ *
+ * LED: P0.15 (UART2_RX와 겸용 → LED용 GPIO로 사용)
+ *   P0.15를 console RX에서 제외하여 GPIO로 사용 가능하게 함
+ *
+ * 참고: link.h
+ */
+
+/ {
+	chosen {
+		zephyr,console = &uart1;
+		zephyr,shell-uart = &uart1;
+	};
+};
+
+&uart1 {
+	compatible = "nordic,nrf-uarte";
+	status = "okay";
+	current-speed = <115200>;
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-1 = <&uart1_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+
+&pinctrl {
+	uart1_default: uart1_default {
+		group1 {
+			psels = <NRF_PSEL(UART_TX, 0, 16)>;
+		};
+		group2 {
+			/* P0.15는 LED로 사용 → RX를 P0.19로 이동 (미사용 핀) */
+			psels = <NRF_PSEL(UART_RX, 0, 19)>;
+			bias-pull-up;
+		};
+	};
+
+	uart1_sleep: uart1_sleep {
+		group1 {
+			psels = <NRF_PSEL(UART_TX, 0, 16)>,
+				<NRF_PSEL(UART_RX, 0, 19)>;
+			low-power-enable;
+		};
+	};
+};

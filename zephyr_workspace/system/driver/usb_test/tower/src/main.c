@@ -1,20 +1,31 @@
 /*
- * USB CDC ACM basic test - Tower
+ * USB CDC ACM test - Tower
  *
  * 동작:
- *   1. USB CDC ACM enumerate (호스트에서 /dev/ttyACMx 로 잡힘)
- *   2. 매 2초마다 카운터 메시지 송신 ("[N] Hello from REVITA Tower USB CDC!")
- *   3. 호스트에서 보낸 문자는 그대로 echo 응답 (RX 인터럽트)
+ *   1. USB CDC ACM enumerate (호스트에서 /dev/ttyACMx)
+ *   2. 매 2초마다 카운터 메시지를 USB CDC + uart0(ttyUSB1) 양쪽에 출력
+ *   3. USB CDC에서 수신한 문자는 echo 응답
  *
- * 출처: zephyr_workspace/usb_cdc (2026-04-06) 패턴 그대로 이식
- * 보드: Tower 의 MCU_USB_D_P / MCU_USB_D_N → USB 커넥터
+ * Console: uart0 (P0.20 TX) → ttyUSB1 @ 115200
+ * USB CDC: ttyACMx
+ *
+ * 참고: tower.h
  */
 
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
 #include <zephyr/drivers/uart.h>
+#include <string.h>
+#include <stdio.h>
 
 static const struct device *cdc_dev;
+
+static void cdc_send_str(const char *s)
+{
+	while (*s) {
+		uart_poll_out(cdc_dev, *s++);
+	}
+}
 
 static void cdc_irq_handler(const struct device *dev, void *user_data)
 {
@@ -36,18 +47,35 @@ static void cdc_irq_handler(const struct device *dev, void *user_data)
 int main(void)
 {
 	int count = 0;
+	char msg[80];
+
+	printk("\n========================================\n");
+	printk("  USB CDC ACM test - Tower\n");
+	printk("  Console: uart0 (ttyUSB1 @ 115200)\n");
+	printk("  USB CDC: ttyACMx\n");
+	printk("========================================\n");
 
 	cdc_dev = DEVICE_DT_GET_ONE(zephyr_cdc_acm_uart);
 	if (!device_is_ready(cdc_dev)) {
-		printk("CDC device not ready\n");
+		printk("[USB] CDC device not ready\n");
 		return -1;
 	}
+	printk("[USB] CDC device ready\n");
 
 	uart_irq_callback_set(cdc_dev, cdc_irq_handler);
 	uart_irq_rx_enable(cdc_dev);
 
 	while (true) {
-		printk("[%d] Hello from REVITA Tower USB CDC!\n", count++);
+		/* uart0 (ttyUSB1) */
+		printk("[UART] #%d Hello from REVITA Tower\n", count);
+
+		/* USB CDC (ttyACMx) */
+		snprintf(msg, sizeof(msg),
+			 "[USB] #%d Hello from REVITA Tower\n", count);
+		cdc_send_str(msg);
+
+		count++;
+
 		k_sleep(K_SECONDS(2));
 	}
 
