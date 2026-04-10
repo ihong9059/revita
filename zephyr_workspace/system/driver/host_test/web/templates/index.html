@@ -2,166 +2,676 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>REVITA Tower Host Test</title>
+    <title>REVITA Host</title>
     <style>
+        :root {
+            --bg: #0d1117; --bg2: #161b22; --bg3: #21262d; --border: #30363d;
+            --text: #e6edf3; --dim: #8b949e; --dim2: #484f58;
+            --blue: #58a6ff; --green: #3fb950; --red: #f85149;
+            --orange: #f0883e; --yellow: #d29922; --purple: #bc8cff;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: monospace; background: #1a1a2e; color: #eee; padding: 20px; }
-        h1 { color: #0f0; margin-bottom: 10px; font-size: 1.4em; }
-        .status { padding: 8px 12px; border-radius: 4px; margin-bottom: 15px; font-size: 0.9em; }
-        .connected { background: #143d14; border: 1px solid #0f0; }
-        .disconnected { background: #3d1414; border: 1px solid #f00; }
+        body { font-family: -apple-system, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
 
-        .section { background: #16213e; border: 1px solid #333; border-radius: 6px; padding: 15px; margin-bottom: 15px; }
-        .section h2 { color: #7ec8e3; font-size: 1.1em; margin-bottom: 10px; }
-
-        .btn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        button {
-            padding: 12px 8px; border: 1px solid #555; border-radius: 4px;
-            background: #0e4166; color: #fff; cursor: pointer; font-family: monospace;
-            font-size: 0.95em; transition: background 0.15s;
+        /* Header */
+        .header {
+            background: var(--bg2); border-bottom: 1px solid var(--border);
+            padding: 12px 20px; display: flex; align-items: center; gap: 16px;
         }
-        button:hover { background: #1a6b9e; }
-        button:active { background: #0f0; color: #000; }
-        button.on { background: #2d6b2d; border-color: #0f0; }
-        button.off { background: #6b2d2d; border-color: #f00; }
-        button.info { background: #4a3d6b; border-color: #a0f; }
-
-        .custom-send { display: flex; gap: 8px; margin-top: 10px; }
-        .custom-send input {
-            flex: 1; padding: 10px; background: #0d1b2a; color: #0f0;
-            border: 1px solid #555; border-radius: 4px; font-family: monospace;
+        .header h1 { font-size: 1.1em; color: var(--blue); }
+        .header .tag {
+            font-size: 0.75em; padding: 2px 8px; border-radius: 10px;
+            background: var(--bg3); color: var(--dim); border: 1px solid var(--border);
         }
 
+        /* Session Banner */
+        .session-banner {
+            background: var(--bg2); border-bottom: 1px solid var(--border);
+            padding: 10px 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+        }
+        .sb-item { display: flex; align-items: center; gap: 6px; font-size: 0.85em; }
+        .sb-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .sb-dot.on { background: var(--green); }
+        .sb-dot.off { background: var(--red); }
+        .sb-label { color: var(--dim); }
+        .sb-value { color: var(--text); font-family: monospace; }
+        .sb-sep { width: 1px; height: 20px; background: var(--border); }
+        .session-btn {
+            margin-left: auto; padding: 6px 18px; background: #1f6feb; color: #fff;
+            border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.85em;
+        }
+        .session-btn:hover { background: #388bfd; }
+        .session-btn:disabled { background: var(--bg3); color: var(--dim); cursor: not-allowed; }
+
+        /* Main layout */
+        .main { display: grid; grid-template-columns: 1fr 340px; min-height: calc(100vh - 90px); }
+        @media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+
+        /* Left panel */
+        .left { padding: 16px 20px; overflow-y: auto; }
+
+        /* Right panel */
+        .right {
+            border-left: 1px solid var(--border); background: var(--bg2);
+            display: flex; flex-direction: column; overflow-y: auto;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+            margin-bottom: 14px;
+        }
+        .card-head {
+            padding: 10px 14px; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .card-head h2 { font-size: 0.85em; color: var(--dim); text-transform: uppercase; letter-spacing: 0.5px; }
+        .card-head .badge {
+            font-size: 0.75em; padding: 1px 8px; border-radius: 8px;
+            background: var(--bg3); color: var(--dim);
+        }
+        .card-body { padding: 14px; }
+
+        /* Sensor grid */
+        .sensor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        @media (max-width: 600px) { .sensor-grid { grid-template-columns: repeat(2, 1fr); } }
+        .sensor-cell {
+            background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+            padding: 10px; text-align: center;
+        }
+        .sensor-label { font-size: 0.7em; color: var(--dim); margin-bottom: 4px; }
+        .sensor-val { font-size: 1.4em; font-weight: 700; font-family: monospace; }
+        .sensor-unit { font-size: 0.7em; color: var(--dim); }
+        .v-temp { color: var(--orange); }
+        .v-humi { color: var(--blue); }
+        .v-count { color: var(--purple); }
+        .v-volt { color: var(--green); }
+
+        /* Status row */
+        .status-row {
+            display: flex; align-items: center; gap: 10px;
+            padding: 8px 0; border-bottom: 1px solid var(--bg3);
+        }
+        .status-row:last-child { border-bottom: none; }
+        .st-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dim2); flex-shrink: 0; }
+        .st-dot.active { background: var(--green); animation: pulse 1.5s infinite; }
+        .st-name { flex: 1; font-size: 0.9em; }
+        .st-val { font-family: monospace; font-size: 0.9em; color: var(--dim); }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+        /* Battery */
+        .bat-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+        .bat-bar-bg { flex: 1; height: 14px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+        .bat-bar { height: 100%; background: var(--green); transition: width .5s; border-radius: 3px; }
+        .bat-val { font-family: monospace; font-size: 0.9em; min-width: 50px; text-align: right; }
+
+        /* Output buttons */
+        .out-group {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 0; border-bottom: 1px solid var(--bg3);
+        }
+        .out-group:last-child { border-bottom: none; }
+        .out-label { font-size: 0.9em; }
+        .out-btns { display: flex; gap: 4px; }
+        .out-btns button {
+            padding: 6px 14px; border: 1px solid var(--border); border-radius: 4px;
+            background: var(--bg3); color: var(--text); cursor: pointer;
+            font-size: 0.8em; font-family: inherit; transition: all .15s;
+        }
+        .out-btns button:hover { border-color: var(--blue); }
+        .btn-on { color: var(--green) !important; border-color: var(--green) !important; }
+        .btn-off { color: var(--red) !important; border-color: var(--red) !important; }
+        .btn-cw { color: var(--blue) !important; }
+        .btn-ccw { color: var(--purple) !important; }
+        .btn-stop { color: var(--yellow) !important; }
+
+        /* Queue notice */
+        .queue-notice {
+            font-size: 0.75em; color: var(--yellow); margin-top: 8px;
+            padding: 6px 10px; background: rgba(210,153,34,.08); border-radius: 4px;
+            border: 1px solid rgba(210,153,34,.2);
+        }
+
+        /* Right panel sections */
+        .rpanel { border-bottom: 1px solid var(--border); }
+        .rpanel-head {
+            padding: 10px 14px; font-size: 0.8em; color: var(--dim);
+            text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .rpanel-body { padding: 0 14px 10px; }
+
+        /* Queue item */
+        .q-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 6px 0; border-bottom: 1px solid var(--bg3); font-size: 0.85em;
+        }
+        .q-item:last-child { border-bottom: none; }
+        .q-status {
+            font-size: 0.7em; padding: 1px 6px; border-radius: 8px;
+            text-transform: uppercase; font-weight: 600;
+        }
+        .q-status.pending { background: rgba(210,153,34,.15); color: var(--yellow); }
+        .q-status.delivered { background: rgba(63,185,80,.15); color: var(--green); }
+        .q-status.cancelled { background: rgba(248,81,73,.15); color: var(--red); }
+        .q-cmd { flex: 1; font-family: monospace; }
+        .q-time { color: var(--dim); font-size: 0.8em; }
+        .q-cancel { background: none; border: none; color: var(--red); cursor: pointer; font-size: 0.9em; padding: 2px 4px; }
+        .q-cancel:hover { color: #ff8080; }
+
+        /* Session history */
+        .sess-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 5px 0; border-bottom: 1px solid var(--bg3); font-size: 0.8em;
+        }
+        .sess-item:last-child { border-bottom: none; }
+        .sess-time { color: var(--dim); font-family: monospace; min-width: 55px; }
+        .sess-detail { flex: 1; }
+        .sess-badge { font-size: 0.75em; padding: 1px 5px; border-radius: 4px; }
+        .sess-up { background: rgba(88,166,255,.1); color: var(--blue); }
+        .sess-cmd { background: rgba(63,185,80,.1); color: var(--green); }
+
+        /* Log */
         .log-box {
-            background: #0d1b2a; border: 1px solid #333; border-radius: 4px;
-            height: 300px; overflow-y: auto; padding: 8px; font-size: 0.85em;
+            background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
+            height: 160px; overflow-y: auto; padding: 6px 8px; font-family: monospace; font-size: 0.78em;
         }
-        .log-tx { color: #ff6; }
-        .log-rx { color: #0f0; }
-        .log-time { color: #888; }
+        .log-tx { color: var(--yellow); }
+        .log-rx { color: var(--green); }
+        .log-sys { color: var(--blue); }
+        .log-time { color: var(--dim2); }
 
-        .conn-row { display: flex; gap: 8px; align-items: center; }
+        /* Connection bar (bottom of right panel) */
+        .conn-section { padding: 10px 14px; border-top: 1px solid var(--border); margin-top: auto; }
+        .conn-row { display: flex; gap: 6px; }
         .conn-row input {
-            flex: 1; padding: 8px; background: #0d1b2a; color: #eee;
-            border: 1px solid #555; border-radius: 4px; font-family: monospace;
+            flex: 1; padding: 6px 8px; background: var(--bg); color: var(--text);
+            border: 1px solid var(--border); border-radius: 4px; font-family: monospace; font-size: 0.85em;
         }
+        .conn-row button { padding: 6px 12px; font-size: 0.8em; }
+
+        /* Schedule */
+        .sched-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
+        .sched-row label { font-size: 0.85em; color: var(--dim); min-width: 50px; }
+        .sched-row select, .sched-row input[type=number] {
+            padding: 4px 8px; background: var(--bg); color: var(--text);
+            border: 1px solid var(--border); border-radius: 4px; font-family: monospace; font-size: 0.85em;
+        }
+        .sched-row select { flex: 1; }
+        .sched-row input[type=number] { width: 80px; }
+
+        /* Custom cmd */
+        .custom-row { display: flex; gap: 6px; margin-top: 6px; }
+        .custom-row input {
+            flex: 1; padding: 6px 8px; background: var(--bg); color: var(--green);
+            border: 1px solid var(--border); border-radius: 4px; font-family: monospace; font-size: 0.85em;
+        }
+        .custom-row button { padding: 6px 10px; font-size: 0.8em; }
+
+        /* Empty state */
+        .empty { color: var(--dim2); font-size: 0.85em; font-style: italic; padding: 8px 0; }
+
+        /* Timestamp tag */
+        .ts-tag { font-size: 0.7em; color: var(--dim2); font-family: monospace; }
+
+        /* Notification toast */
+        .toast {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            padding: 8px 20px; border-radius: 6px; font-size: 0.85em;
+            background: var(--bg3); border: 1px solid var(--border); color: var(--text);
+            opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 100;
+        }
+        .toast.show { opacity: 1; }
+        .toast.ok { border-color: var(--green); color: var(--green); }
+        .toast.warn { border-color: var(--yellow); color: var(--yellow); }
     </style>
 </head>
 <body>
-    <h1>REVITA Tower Host Test</h1>
 
-    <div id="status" class="status disconnected">Disconnected</div>
+<!-- Header -->
+<div class="header">
+    <h1>REVITA Host</h1>
+    <span class="tag">LTE Session Mode</span>
+    <span class="tag" id="fwTag">Simulation</span>
+</div>
 
-    <div class="section">
-        <h2>Connection</h2>
-        <div class="conn-row">
-            <input type="text" id="port" value="{{ port }}" placeholder="/dev/ttyACMx">
-            <button onclick="doConnect()">Connect</button>
+<!-- Session Banner -->
+<div class="session-banner">
+    <div class="sb-item">
+        <div class="sb-dot off" id="connDot"></div>
+        <span class="sb-label">Tower</span>
+        <span class="sb-value" id="connStatus">Offline</span>
+    </div>
+    <div class="sb-sep"></div>
+    <div class="sb-item">
+        <span class="sb-label">Last session</span>
+        <span class="sb-value" id="lastSession">--</span>
+    </div>
+    <div class="sb-sep"></div>
+    <div class="sb-item">
+        <span class="sb-label">Pending</span>
+        <span class="sb-value" id="pendingCount" style="color:var(--yellow)">0</span>
+        <span class="sb-label">cmds</span>
+    </div>
+    <div class="sb-sep"></div>
+    <div class="sb-item">
+        <span class="sb-label">Schedule</span>
+        <span class="sb-value" id="scheduleInfo">30min</span>
+    </div>
+    <button class="session-btn" id="sessionBtn" onclick="runSession()">Run Session</button>
+</div>
+
+<div class="main">
+    <!-- ==================== LEFT PANEL ==================== -->
+    <div class="left">
+
+        <!-- Sensors -->
+        <div class="card">
+            <div class="card-head">
+                <h2>Sensors</h2>
+                <span class="ts-tag" id="sensorTs">No data</span>
+            </div>
+            <div class="card-body">
+                <div class="sensor-grid">
+                    <div class="sensor-cell">
+                        <div class="sensor-label">Soil #1 Temp</div>
+                        <div class="sensor-val v-temp" id="soil1Temp">--</div>
+                        <div class="sensor-unit">&deg;C</div>
+                    </div>
+                    <div class="sensor-cell">
+                        <div class="sensor-label">Soil #1 Humi</div>
+                        <div class="sensor-val v-humi" id="soil1Humi">--</div>
+                        <div class="sensor-unit">%</div>
+                    </div>
+                    <div class="sensor-cell">
+                        <div class="sensor-label">Soil #2 Temp</div>
+                        <div class="sensor-val v-temp" id="soil2Temp">--</div>
+                        <div class="sensor-unit">&deg;C</div>
+                    </div>
+                    <div class="sensor-cell">
+                        <div class="sensor-label">Soil #2 Humi</div>
+                        <div class="sensor-val v-humi" id="soil2Humi">--</div>
+                        <div class="sensor-unit">%</div>
+                    </div>
+                    <div class="sensor-cell">
+                        <div class="sensor-label">Leaf Temp</div>
+                        <div class="sensor-val v-temp" id="leafTemp">--</div>
+                        <div class="sensor-unit">&deg;C</div>
+                    </div>
+                    <div class="sensor-cell">
+                        <div class="sensor-label">Leaf Humi</div>
+                        <div class="sensor-val v-humi" id="leafHumi">--</div>
+                        <div class="sensor-unit">%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status / Counter -->
+        <div class="card">
+            <div class="card-head">
+                <h2>Status / Counter</h2>
+                <span class="ts-tag" id="inputTs">No data</span>
+            </div>
+            <div class="card-body">
+                <div class="status-row">
+                    <div class="st-dot" id="btnDot"></div>
+                    <span class="st-name">Button</span>
+                    <span class="st-val" id="btnVal">--</span>
+                </div>
+                <div class="status-row">
+                    <div class="st-dot" id="vibDot"></div>
+                    <span class="st-name">Vibration</span>
+                    <span class="st-val" id="vibVal">--</span>
+                </div>
+                <div class="status-row">
+                    <div class="st-dot" id="flow1Dot"></div>
+                    <span class="st-name">Flow #1</span>
+                    <span class="st-val v-count" id="flow1Val">--</span>
+                </div>
+                <div class="status-row">
+                    <div class="st-dot" id="flow2Dot"></div>
+                    <span class="st-name">Flow #2</span>
+                    <span class="st-val v-count" id="flow2Val">--</span>
+                </div>
+                <div class="bat-row">
+                    <span class="st-name">Battery</span>
+                    <div class="bat-bar-bg"><div class="bat-bar" id="batBar"></div></div>
+                    <span class="bat-val v-volt" id="batVal">-- V</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Output Control -->
+        <div class="card">
+            <div class="card-head">
+                <h2>Output Control</h2>
+                <span class="badge" id="queueBadge">Queue</span>
+            </div>
+            <div class="card-body">
+                <div class="out-group">
+                    <span class="out-label">LED</span>
+                    <div class="out-btns">
+                        <button class="btn-on" onclick="queueCmd('LED_ON')">ON</button>
+                        <button class="btn-off" onclick="queueCmd('LED_OFF')">OFF</button>
+                    </div>
+                </div>
+                <div class="out-group">
+                    <span class="out-label">Buzzer</span>
+                    <div class="out-btns">
+                        <button class="btn-on" onclick="queueCmd('BUZZER_ON')">ON</button>
+                        <button class="btn-off" onclick="queueCmd('BUZZER_OFF')">OFF</button>
+                    </div>
+                </div>
+                <div class="out-group">
+                    <span class="out-label">Motor X</span>
+                    <div class="out-btns">
+                        <button class="btn-cw" onclick="queueCmd('MOTOR_X_CW')">CW</button>
+                        <button class="btn-stop" onclick="queueCmd('MOTOR_X_STOP')">STOP</button>
+                        <button class="btn-ccw" onclick="queueCmd('MOTOR_X_CCW')">CCW</button>
+                    </div>
+                </div>
+                <div class="out-group">
+                    <span class="out-label">Motor Y</span>
+                    <div class="out-btns">
+                        <button class="btn-cw" onclick="queueCmd('MOTOR_Y_CW')">CW</button>
+                        <button class="btn-stop" onclick="queueCmd('MOTOR_Y_STOP')">STOP</button>
+                        <button class="btn-ccw" onclick="queueCmd('MOTOR_Y_CCW')">CCW</button>
+                    </div>
+                </div>
+                <div class="queue-notice">
+                    Commands are queued and delivered on next session.
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Commands</h2>
-        <div class="btn-grid">
-            <button class="on" onclick="sendCmd('CMD:LED_ON')">LED ON</button>
-            <button class="off" onclick="sendCmd('CMD:LED_OFF')">LED OFF</button>
-            <button class="info" onclick="sendCmd('CMD:STATUS')">STATUS</button>
-            <button class="on" onclick="sendCmd('CMD:BUZZER_ON')">BUZZER ON</button>
-            <button class="off" onclick="sendCmd('CMD:BUZZER_OFF')">BUZZER OFF</button>
-            <button class="info" onclick="sendCmd('CMD:SENSOR_READ')">SENSOR READ</button>
-        </div>
-        <div class="custom-send">
-            <input type="text" id="customCmd" placeholder="DATA:hello world" onkeydown="if(event.key==='Enter')sendCustom()">
-            <button onclick="sendCustom()">Send</button>
-        </div>
-    </div>
+    <!-- ==================== RIGHT PANEL ==================== -->
+    <div class="right">
 
-    <div class="section">
-        <h2>Communication Log</h2>
-        <div class="log-box" id="logBox"></div>
-        <button style="margin-top:8px; background:#333;" onclick="clearLog()">Clear Log</button>
+        <!-- Command Queue -->
+        <div class="rpanel">
+            <div class="rpanel-head">
+                <span>Command Queue</span>
+                <span id="qCount" style="color:var(--yellow)">0</span>
+            </div>
+            <div class="rpanel-body" id="queueList">
+                <div class="empty">No pending commands</div>
+            </div>
+        </div>
+
+        <!-- Session History -->
+        <div class="rpanel">
+            <div class="rpanel-head">
+                <span>Session History</span>
+            </div>
+            <div class="rpanel-body" id="sessionList">
+                <div class="empty">No sessions yet</div>
+            </div>
+        </div>
+
+        <!-- Schedule -->
+        <div class="rpanel">
+            <div class="rpanel-head"><span>Schedule</span></div>
+            <div class="rpanel-body">
+                <div class="sched-row">
+                    <label>Mode</label>
+                    <select id="schedMode" onchange="updateSchedule()">
+                        <option value="normal">Normal (30min)</option>
+                        <option value="frequent">Frequent (5min)</option>
+                        <option value="power_save">Power Save (2hr)</option>
+                    </select>
+                </div>
+                <div class="sched-row">
+                    <label>Period</label>
+                    <input type="number" id="schedPeriod" value="1800" min="60" step="60">
+                    <span style="font-size:.8em;color:var(--dim)">sec</span>
+                    <button style="padding:4px 10px;font-size:.8em" onclick="updateSchedule()">Set</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Communication Log -->
+        <div class="rpanel" style="flex:1; display:flex; flex-direction:column;">
+            <div class="rpanel-head">
+                <span>Communication Log</span>
+                <button style="padding:2px 8px;font-size:.7em;background:var(--bg3);border:1px solid var(--border);color:var(--dim);border-radius:3px;cursor:pointer" onclick="clearLog()">Clear</button>
+            </div>
+            <div class="rpanel-body" style="flex:1; display:flex; flex-direction:column;">
+                <div class="log-box" id="logBox" style="flex:1;"></div>
+                <div class="custom-row">
+                    <input type="text" id="customCmd" placeholder="CMD:xxx" onkeydown="if(event.key==='Enter')sendDirect()">
+                    <button onclick="sendDirect()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connection -->
+        <div class="conn-section">
+            <div class="conn-row">
+                <input type="text" id="port" value="{{ port }}" placeholder="/dev/ttyACMx">
+                <button onclick="doConnect()">Connect</button>
+            </div>
+        </div>
     </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
 
 <script>
-    let logData = [];
+/* ==== Toast ==== */
+let toastTimer;
+function showToast(msg, type='ok') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show ' + type;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.className = 'toast', 2000);
+}
 
-    async function doConnect() {
-        const port = document.getElementById('port').value;
-        const r = await fetch('/api/connect', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({port})
-        });
+/* ==== Connection ==== */
+async function doConnect() {
+    const port = document.getElementById('port').value;
+    const r = await fetch('/api/connect', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({port}) });
+    const j = await r.json();
+    if (j.ok) showToast('Connected: ' + j.port);
+    else showToast('Connection failed', 'warn');
+    refreshStatus();
+}
+
+/* ==== Session ==== */
+async function runSession() {
+    const btn = document.getElementById('sessionBtn');
+    btn.disabled = true;
+    btn.textContent = 'Running...';
+    try {
+        const r = await fetch('/api/session/start', { method:'POST', headers:{'Content-Type':'application/json'}, body:'{}' });
         const j = await r.json();
-        updateStatus(j.ok);
-    }
-
-    async function sendCmd(cmd) {
-        const r = await fetch('/api/send', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({cmd})
-        });
-        const j = await r.json();
-        if (!j.ok) alert(j.error || 'send failed');
-        refreshLog();
-    }
-
-    function sendCustom() {
-        const input = document.getElementById('customCmd');
-        const cmd = input.value.trim();
-        if (cmd) {
-            sendCmd(cmd);
-            input.value = '';
-        }
-    }
-
-    function updateStatus(connected) {
-        const el = document.getElementById('status');
-        const port = document.getElementById('port').value;
-        if (connected) {
-            el.className = 'status connected';
-            el.textContent = 'Connected: ' + port;
+        if (j.ok) {
+            showToast(`Session #${j.session.seq}: ${j.session.uploaded} records, ${j.session.cmds_delivered} cmds`);
         } else {
-            el.className = 'status disconnected';
-            el.textContent = 'Disconnected';
+            showToast(j.error || 'Session failed', 'warn');
         }
+    } catch(e) {
+        showToast('Session error', 'warn');
     }
+    btn.disabled = false;
+    btn.textContent = 'Run Session';
+    refreshAll();
+}
 
-    async function refreshLog() {
-        const r = await fetch('/api/log');
-        logData = await r.json();
-        renderLog();
+/* ==== Command Queue ==== */
+async function queueCmd(cmd) {
+    const r = await fetch('/api/cmd/queue', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({cmd, target:'link:01'}) });
+    const j = await r.json();
+    if (j.ok) showToast(`Queued: ${cmd}`, 'warn');
+    refreshQueue();
+    refreshStatus();
+}
+
+async function cancelCmd(reqId) {
+    await fetch('/api/cmd/cancel', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({req_id:reqId}) });
+    showToast('Command cancelled');
+    refreshQueue();
+    refreshStatus();
+}
+
+async function refreshQueue() {
+    const r = await fetch('/api/cmd/pending');
+    const items = await r.json();
+    const el = document.getElementById('queueList');
+    const cnt = document.getElementById('qCount');
+    cnt.textContent = items.length;
+    document.getElementById('pendingCount').textContent = items.length;
+    if (items.length === 0) {
+        el.innerHTML = '<div class="empty">No pending commands</div>';
+        return;
     }
+    el.innerHTML = items.map(c => `
+        <div class="q-item">
+            <span class="q-status pending">pending</span>
+            <span class="q-cmd">${esc(c.cmd)}</span>
+            <span class="q-time">${c.created_at.split(' ')[1]}</span>
+            <button class="q-cancel" onclick="cancelCmd('${c.req_id}')" title="Cancel">&times;</button>
+        </div>
+    `).join('');
+}
 
-    function renderLog() {
-        const box = document.getElementById('logBox');
-        let html = '';
-        for (const e of logData) {
-            const cls = e.dir === 'TX' ? 'log-tx' : 'log-rx';
-            html += `<div><span class="log-time">${e.time}</span> <span class="${cls}">[${e.dir}]</span> ${e.text}</div>`;
+/* ==== Telemetry ==== */
+async function refreshTelemetry() {
+    const r = await fetch('/api/telemetry');
+    const d = await r.json();
+    if (d.ts) {
+        document.getElementById('sensorTs').textContent = d.ts;
+        document.getElementById('inputTs').textContent = d.ts;
+    }
+    setVal('soil1Temp', d.soil1_temp);
+    setVal('soil1Humi', d.soil1_humi);
+    setVal('soil2Temp', d.soil2_temp);
+    setVal('soil2Humi', d.soil2_humi);
+    setVal('leafTemp', d.leaf_temp);
+    setVal('leafHumi', d.leaf_humi);
+    setBool('btn', d.btn);
+    setBool('vib', d.vib);
+    setCounter('flow1', d.flow1);
+    setCounter('flow2', d.flow2);
+    if (d.battery_mv != null) {
+        const v = parseFloat(d.battery_mv);
+        document.getElementById('batVal').textContent = v.toFixed(2) + ' V';
+        const pct = Math.max(0, Math.min(100, ((v - 3.0) / 1.2) * 100));
+        const bar = document.getElementById('batBar');
+        bar.style.width = pct + '%';
+        bar.style.background = pct < 20 ? 'var(--red)' : pct < 50 ? 'var(--yellow)' : 'var(--green)';
+    }
+}
+function setVal(id, val) { if (val != null) document.getElementById(id).textContent = val; }
+function setBool(prefix, val) {
+    if (val == null) return;
+    const active = val === '1' || val === 1;
+    document.getElementById(prefix+'Dot').classList.toggle('active', active);
+    document.getElementById(prefix+'Val').textContent = active ? 'ON' : 'OFF';
+}
+function setCounter(prefix, val) {
+    if (val == null) return;
+    document.getElementById(prefix+'Dot').classList.toggle('active', parseInt(val)>0);
+    document.getElementById(prefix+'Val').textContent = val;
+}
+
+/* ==== Sessions ==== */
+async function refreshSessions() {
+    const r = await fetch('/api/session/list');
+    const items = await r.json();
+    const el = document.getElementById('sessionList');
+    if (items.length === 0) { el.innerHTML = '<div class="empty">No sessions yet</div>'; return; }
+    el.innerHTML = items.slice().reverse().slice(0, 15).map(s => `
+        <div class="sess-item">
+            <span class="sess-time">${s.time}</span>
+            <span class="sess-detail">
+                <span class="sess-badge sess-up">${s.uploaded} rec</span>
+                <span class="sess-badge sess-cmd">${s.cmds_delivered} cmd</span>
+            </span>
+            <span style="font-size:.75em;color:var(--dim)">${s.duration_ms}ms</span>
+        </div>
+    `).join('');
+}
+
+/* ==== Status ==== */
+async function refreshStatus() {
+    try {
+        const r = await fetch('/api/status');
+        const j = await r.json();
+        const dot = document.getElementById('connDot');
+        const status = document.getElementById('connStatus');
+        if (j.connected) {
+            dot.classList.add('on'); dot.classList.remove('off');
+            status.textContent = j.port;
+        } else {
+            dot.classList.remove('on'); dot.classList.add('off');
+            status.textContent = 'Offline';
         }
-        box.innerHTML = html;
-        box.scrollTop = box.scrollHeight;
-    }
+        document.getElementById('pendingCount').textContent = j.pending_cmds;
+        if (j.last_session) {
+            document.getElementById('lastSession').textContent = j.last_session.time;
+        }
+        if (j.schedule) {
+            const m = j.schedule.period_s >= 3600 ? (j.schedule.period_s/3600)+'hr' :
+                      j.schedule.period_s >= 60 ? (j.schedule.period_s/60)+'min' : j.schedule.period_s+'s';
+            document.getElementById('scheduleInfo').textContent = m;
+        }
+    } catch(e) {}
+}
 
-    function clearLog() {
-        logData = [];
-        document.getElementById('logBox').innerHTML = '';
-    }
+/* ==== Schedule ==== */
+async function updateSchedule() {
+    const mode = document.getElementById('schedMode').value;
+    const defaults = { normal: 1800, frequent: 300, power_save: 7200 };
+    const period = defaults[mode] || parseInt(document.getElementById('schedPeriod').value) || 1800;
+    document.getElementById('schedPeriod').value = period;
+    await fetch('/api/schedule', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({mode, period_s:period}) });
+    showToast(`Schedule: ${mode} (${period}s)`);
+    refreshStatus();
+}
 
-    // Auto-refresh
-    async function checkStatus() {
-        try {
-            const r = await fetch('/api/status');
-            const j = await r.json();
-            updateStatus(j.connected);
-        } catch(e) {}
-    }
+/* ==== Log ==== */
+async function refreshLog() {
+    const r = await fetch('/api/log');
+    const items = await r.json();
+    const box = document.getElementById('logBox');
+    box.innerHTML = items.map(e => {
+        const cls = e.dir === 'TX' ? 'log-tx' : e.dir === 'SYS' ? 'log-sys' : 'log-rx';
+        return `<div><span class="log-time">${e.time}</span> <span class="${cls}">[${e.dir}]</span> ${esc(e.text)}</div>`;
+    }).join('');
+    box.scrollTop = box.scrollHeight;
+}
+function clearLog() { document.getElementById('logBox').innerHTML = ''; }
 
-    setInterval(() => { refreshLog(); checkStatus(); }, 2000);
-    checkStatus();
+/* ==== Direct send (debug) ==== */
+async function sendDirect() {
+    const input = document.getElementById('customCmd');
+    const cmd = input.value.trim();
+    if (!cmd) return;
+    const r = await fetch('/api/send', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({cmd}) });
+    const j = await r.json();
+    if (!j.ok) showToast(j.error || 'Failed', 'warn');
+    input.value = '';
     refreshLog();
+}
+
+/* ==== Helpers ==== */
+function esc(s) { return s.replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+async function refreshAll() {
+    refreshStatus();
+    refreshTelemetry();
+    refreshQueue();
+    refreshSessions();
+    refreshLog();
+}
+
+/* ==== Init ==== */
+refreshAll();
+setInterval(refreshAll, 3000);
 </script>
 </body>
 </html>
